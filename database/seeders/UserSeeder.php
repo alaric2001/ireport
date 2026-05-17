@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class UserSeeder extends Seeder
                 'id'         => 17,
                 'name'       => 'Tes 123',
                 'email'      => 'tes@mail.com',
-                'password'   => '$2y$10$yIVbdXMH5/BzAQj9vmNLVe09c6csIaId6oWBKLUlva0OUBN43m5Ki',
+                'password'   => Hash::make('123'),
                 'pengajuan'  => '0',
                 'role'       => 1,
                 'created_at' => '2022-04-17 16:42:51',
@@ -24,7 +25,7 @@ class UserSeeder extends Seeder
                 'id'         => 19,
                 'name'       => 'www',
                 'email'      => 'w@mail.com',
-                'password'   => '$2y$10$8JmrTmveGuizgDf2LB9SZ.XnajZMKtLC0RymtVlzq42.J80EjNT1u',
+                'password'   => Hash::make('123'),
                 'pengajuan'  => '-',
                 'role'       => 2,
                 'created_at' => '2022-04-17 17:19:30',
@@ -34,7 +35,7 @@ class UserSeeder extends Seeder
                 'id'         => 20,
                 'name'       => 'Hanafi Muamar',
                 'email'      => 'hanafi@gmail.com',
-                'password'   => '$2y$10$RXK493z646T/rte.m.Jn0esgN3.JzsiEdvYaSs.J2TsPKTaPFwEM2',
+                'password'   => Hash::make('123'),
                 'pengajuan'  => '0',
                 'role'       => 2,
                 'created_at' => '2022-04-18 00:26:03',
@@ -44,7 +45,7 @@ class UserSeeder extends Seeder
                 'id'         => 24,
                 'name'       => 'Satrio',
                 'email'      => 'tio@mail.com',
-                'password'   => '$2y$10$JwNU354G6UYlBZX204Hjiuc3MeoWyIi8tevRy5FATVmp/P98QmWYi',
+                'password'   => Hash::make('123'),
                 'pengajuan'  => null,
                 'role'       => 2,
                 'created_at' => '2022-06-23 23:23:54',
@@ -54,7 +55,7 @@ class UserSeeder extends Seeder
                 'id'         => 27,
                 'name'       => 'bro',
                 'email'      => 'bro@mail.com',
-                'password'   => '$2y$10$9HmlGfro0wgIWXt2MJD./eXL4Sgla6oV95U2z0lv/vDTUJ53g2Xta',
+                'password'   => Hash::make('123'),
                 'pengajuan'  => null,
                 'role'       => 2,
                 'created_at' => '2022-06-26 07:45:02',
