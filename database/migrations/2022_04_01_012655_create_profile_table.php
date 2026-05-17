@@ -4,34 +4,26 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfileTable extends Migration
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('profile', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('alamat');
-            $table->string('ttl');
-            $table->integer('point');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->id();
+            $table->string('nama')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('tempatLahir')->nullable();
+            $table->date('tanggalLahir')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('pengajuan')->default('-');
+            $table->integer('point')->nullable()->default(0);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('profile');
     }
-}
+};

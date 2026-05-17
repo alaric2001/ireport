@@ -4,36 +4,30 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLaporanTable extends Migration
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('laporan', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('judul');
+            $table->id();
+            $table->string('provinsi')->nullable();
             $table->string('alamat');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->text('keterangan');
-            $table->integer('vote');
-            $table->string('status_pengiriman');
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('vote')->nullable();
+            $table->string('status_pengiriman')->nullable();
+            $table->string('kategori')->nullable();
+            $table->foreignId('kategori_id')->nullable()->constrained('kategori')->nullOnDelete();
             $table->timestamps();
+            $table->date('tanggal');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('laporan');
     }
-}
+};
