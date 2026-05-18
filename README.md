@@ -315,6 +315,6 @@ deploy/
 
 <div align="center">
 
-Dibuat dengan ❤️ oelh Alaric sebagai proyek portofolio akademik · 2022
+Dibuat dengan ❤️ oleh Alaric sebagai proyek portofolio akademik · 2022
 
 </div>
