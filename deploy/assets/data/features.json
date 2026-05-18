@@ -2,37 +2,43 @@
   {
     "icon": "fa-file-circle-plus",
     "color": "blue",
-    "title": "Kirim Laporan dengan Foto",
-    "desc": "Upload foto kondisi kerusakan beserta lokasi dan keterangan lengkap untuk memperkuat laporan."
+    "title": "Kirim Laporan + Foto",
+    "desc": "Reporter submit laporan kerusakan infrastruktur beserta foto bukti, provinsi, dan kategori. Data tersimpan di tabel <code>laporan</code> dengan FK ke <code>users</code>.",
+    "table": "laporan"
   },
   {
     "icon": "fa-arrow-up-wide-short",
     "color": "amber",
     "title": "Sistem Voting",
-    "desc": "Upvote atau downvote laporan untuk menentukan prioritas penanganan berdasarkan kepentingan warga."
+    "desc": "Upvote/downvote laporan untuk menentukan prioritas penanganan. Tersimpan di kolom <code>vote</code> (integer) pada tabel <code>laporan</code>.",
+    "table": "laporan.vote"
   },
   {
     "icon": "fa-newspaper",
     "color": "green",
-    "title": "Berita Infrastruktur",
-    "desc": "Admin dapat menerbitkan berita terkini seputar pembangunan dan perbaikan infrastruktur."
+    "title": "Manajemen Berita",
+    "desc": "Admin menerbitkan berita infrastruktur publik. Tabel <code>berita</code> ber-FK nullable ke <code>users</code> dan menyimpan sumber serta tanggal.",
+    "table": "berita"
   },
   {
     "icon": "fa-comments",
     "color": "purple",
     "title": "Komentar Laporan",
-    "desc": "Warga bisa berkomentar pada setiap laporan untuk menambahkan informasi atau dukungan."
+    "desc": "Reporter berkomentar pada laporan. Tabel <code>komentar</code> ber-FK ke <code>profile</code> (bukan <code>users</code>) dan ke <code>laporan</code>.",
+    "table": "komentar"
   },
   {
     "icon": "fa-map-location-dot",
     "color": "red",
     "title": "Filter per Provinsi",
-    "desc": "Saring laporan berdasarkan provinsi untuk memantau kondisi infrastruktur di daerah tertentu."
+    "desc": "Saring laporan berdasarkan kolom <code>provinsi</code> pada tabel <code>laporan</code>. Tersedia untuk semua level pengguna termasuk Guest.",
+    "table": "laporan.provinsi"
   },
   {
-    "icon": "fa-shield-halved",
+    "icon": "fa-user-lock",
     "color": "teal",
-    "title": "Panel Admin",
-    "desc": "Dashboard khusus admin untuk mengelola laporan, berita, pengguna, dan pengajuan reporter."
+    "title": "RBAC — 3 Level Akses",
+    "desc": "Kolom <code>role</code> di tabel <code>users</code>: 0=Guest, 1=Reporter, 2=Admin. Dikendalikan middleware <code>CheckRole</code> di setiap route sensitif.",
+    "table": "users.role"
   }
 ]

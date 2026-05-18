@@ -93,12 +93,14 @@ section { padding:80px 5%; }
 /* FEATURES */
 .features { background:var(--light); }
 .features-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.feature-card { background:var(--white); border-radius:var(--radius); padding:28px; border:1px solid var(--border); transition:transform .2s,box-shadow .2s; }
+.feature-card { background:var(--white); border-radius:var(--radius); padding:28px; border:1px solid var(--border); transition:transform .2s,box-shadow .2s; display:flex; flex-direction:column; }
 .feature-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
 .feature-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:18px; }
 .fi-blue{background:#dbeafe;color:var(--primary);} .fi-amber{background:#fef3c7;color:#d97706;} .fi-green{background:#dcfce7;color:#16a34a;} .fi-purple{background:#f3e8ff;color:#7c3aed;} .fi-red{background:#fee2e2;color:#dc2626;} .fi-teal{background:#ccfbf1;color:#0d9488;}
 .feature-card h3 { font-size:1rem; font-weight:700; margin-bottom:8px; }
-.feature-card p { font-size:.875rem; color:var(--gray); }
+.feature-card p { font-size:.875rem; color:var(--gray); flex:1; }
+.feature-table-badge { display:inline-block; margin-top:14px; font-family:'Courier New',monospace; font-size:.68rem; background:var(--light); border:1px solid var(--border); color:var(--gray); padding:2px 10px; border-radius:6px; align-self:flex-start; }
+.feature-card p code { font-family:'Courier New',monospace; font-size:.8em; background:var(--light); border:1px solid var(--border); padding:1px 5px; border-radius:4px; color:var(--primary); }
 
 /* HOW */
 .how { background:var(--white); }
@@ -110,22 +112,35 @@ section { padding:80px 5%; }
 
 /* ROLES */
 .roles { background:var(--light); }
-.roles-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
-.role-card { background:var(--white); border-radius:var(--radius); padding:32px; border:1px solid var(--border); }
-.role-card.admin{border-top:4px solid var(--primary);} .role-card.reporter{border-top:4px solid var(--accent);}
+.roles-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.role-card { background:var(--white); border-radius:var(--radius); padding:28px; border:1px solid var(--border); }
+.role-card.guest{border-top:4px solid var(--gray);}
+.role-card.reporter{border-top:4px solid var(--accent);}
+.role-card.admin{border-top:4px solid var(--primary);}
 .role-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
 .role-avatar { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
-.ra-blue{background:#dbeafe;color:var(--primary);} .ra-amber{background:#fef3c7;color:#d97706;}
-.role-header h3 { font-size:1.1rem; font-weight:700; } .role-header p { font-size:.8rem; color:var(--gray); }
-.role-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
-.role-list li { display:flex; align-items:flex-start; gap:10px; font-size:.875rem; color:var(--gray); }
+.ra-gray{background:#f1f5f9;color:var(--gray);}
+.ra-blue{background:#dbeafe;color:var(--primary);}
+.ra-amber{background:#fef3c7;color:#d97706;}
+.role-num { font-size:.65rem; font-weight:700; padding:2px 8px; border-radius:10px; margin-top:2px; display:inline-block; }
+.rn-gray{background:#f1f5f9;color:var(--gray);} .rn-amber{background:#fef3c7;color:#92400e;} .rn-blue{background:#dbeafe;color:var(--primary);}
+.role-header h3 { font-size:1rem; font-weight:700; margin-bottom:2px; }
+.role-header p { font-size:.75rem; color:var(--gray); font-family:'Courier New',monospace; }
+.role-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.role-list li { display:flex; align-items:flex-start; gap:10px; font-size:.83rem; color:var(--gray); }
 .role-list li i { color:var(--primary); margin-top:2px; font-size:.8rem; }
+.role-card.guest .role-list li i { color:var(--gray); }
+.role-card.reporter .role-list li i { color:#d97706; }
 
 /* TECH */
 .tech { background:var(--white); }
-.tech-grid { max-width:800px; margin:0 auto; display:flex; flex-wrap:wrap; gap:16px; justify-content:center; }
-.tech-badge { display:flex; align-items:center; gap:10px; background:var(--light); border:1px solid var(--border); border-radius:10px; padding:12px 20px; font-size:.875rem; font-weight:600; color:var(--dark); }
-.tech-badge i { font-size:1.1rem; }
+.tech-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.tech-badge { display:flex; align-items:center; gap:10px; background:var(--light); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+.tech-badge i { font-size:1.2rem; flex-shrink:0; }
+.tech-badge-info { display:flex; flex-direction:column; }
+.tech-badge-name { font-size:.85rem; font-weight:700; color:var(--dark); }
+.tech-badge-ver  { font-size:.7rem; color:var(--gray); margin-top:1px; }
+.tech-badge-desc { font-size:.68rem; color:var(--gray); opacity:.8; }
 
 /* TEAM */
 .team { background:var(--light); }
@@ -156,16 +171,22 @@ footer p { font-size:.85rem; }
 .footer-links a:hover { color:#fff; }
 
 /* RESPONSIVE */
+@media(max-width:1024px){
+  .tech-grid{grid-template-columns:repeat(3,1fr);}
+}
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;} .hero-visual{display:none;}
   .features-grid{grid-template-columns:repeat(2,1fr);}
   .steps{grid-template-columns:1fr;} .steps::before{display:none;}
-  .roles-grid{grid-template-columns:1fr;}
+  .roles-grid{grid-template-columns:repeat(2,1fr);}
   .team-grid{grid-template-columns:repeat(3,1fr);}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:600px){
   .nav-links{display:none;}
   .features-grid{grid-template-columns:1fr;}
+  .roles-grid{grid-template-columns:1fr;}
   .team-grid{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:repeat(2,1fr);}
 }

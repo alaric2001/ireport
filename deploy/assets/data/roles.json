@@ -1,32 +1,49 @@
 [
   {
-    "key": "admin",
-    "icon": "fa-user-shield",
-    "title": "Admin",
-    "subtitle": "Pengelola platform",
-    "color": "blue",
+    "key": "guest",
+    "role": 0,
+    "icon": "fa-user",
+    "title": "Guest / User",
+    "subtitle": "role = 0 · Pengunjung platform",
+    "color": "gray",
     "permissions": [
-      "Kelola & moderasi semua laporan",
-      "Publikasi & edit berita infrastruktur",
-      "Kelola data tim (Our Team)",
-      "Approve pengajuan reporter baru",
-      "Promosi pengguna menjadi admin",
-      "Hapus akun pengguna"
+      "Lihat daftar & detail laporan publik",
+      "Baca berita infrastruktur",
+      "Filter laporan berdasarkan provinsi",
+      "Registrasi akun baru",
+      "Ajukan diri sebagai Reporter (pending approval Admin)"
     ]
   },
   {
     "key": "reporter",
+    "role": 1,
     "icon": "fa-pen-to-square",
     "title": "Reporter",
-    "subtitle": "Pelapor infrastruktur",
+    "subtitle": "role = 1 · Pelapor infrastruktur",
     "color": "amber",
     "permissions": [
+      "Semua akses Guest",
       "Buat & kelola laporan pribadi",
       "Upload foto bukti kerusakan",
       "Vote laporan milik pengguna lain",
       "Tulis & edit komentar laporan",
-      "Kelola profil & foto diri",
-      "Pantau laporan berdasarkan provinsi"
+      "Kelola profil & foto diri"
+    ]
+  },
+  {
+    "key": "admin",
+    "role": 2,
+    "icon": "fa-user-shield",
+    "title": "Admin",
+    "subtitle": "role = 2 · Pengelola platform",
+    "color": "blue",
+    "permissions": [
+      "Semua akses Reporter",
+      "Moderasi & ubah status laporan",
+      "Publikasi & edit berita infrastruktur",
+      "Approve pengajuan reporter baru",
+      "Kelola data tim (Our Team)",
+      "Promosi pengguna & hapus akun"
     ]
   }
 ]

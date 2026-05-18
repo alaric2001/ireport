@@ -40,32 +40,47 @@ composer update
 ## Struktur Folder Penting
 
 ```
-app/
-├── Http/Controllers/       ← Semua controller (termasuk Auth/)
-├── Http/Middleware/
-├── Providers/
-├── Exceptions/Handler.php
-├── Berita.php              ← Model ada di app/, BUKAN app/Models/
-├── Komentar.php
-├── Laporan.php
-├── Ourteam.php
-├── Profile.php
-└── User.php
-
-database/
-├── migrations/             ← 9 migration files (anonymous class L10)
-└── seeders/                ← Namespace: Database\Seeders
-
-routes/
-└── web.php                 ← Semua route dengan sintaks FQCN
-
-deploy/                     ← Static showcase untuk Netlify
-├── index.html
-├── docs.html
-└── assets/
-    ├── css/  (style.css, docs.css)
-    ├── js/   (app.js, docs.js)
-    └── data/ (stats, features, team, tech, roles — format JSON)
+IREPORT/                    ← Root repo
+├── netlify.toml            ← Konfigurasi Netlify (publish = "deploy")
+├── README.md               ← Dokumentasi publik untuk GitHub
+├── CLAUDE.md               ← Panduan ini
+│
+├── app/
+│   ├── Http/Controllers/   ← Semua controller (termasuk Auth/)
+│   ├── Http/Middleware/
+│   ├── Providers/
+│   ├── Exceptions/Handler.php
+│   ├── Berita.php          ← Model ada di app/, BUKAN app/Models/
+│   ├── Komentar.php
+│   ├── Laporan.php
+│   ├── Ourteam.php
+│   ├── Profile.php
+│   └── User.php
+│
+├── database/
+│   ├── migrations/         ← 9 migration files (anonymous class L10)
+│   └── seeders/            ← Namespace: Database\Seeders
+│
+├── routes/
+│   └── web.php             ← Semua route dengan sintaks FQCN
+│
+└── deploy/                 ← Static showcase untuk Netlify (murni HTML/CSS/JS)
+    ├── index.html          ← Landing page (data dimuat dari JSON via app.js)
+    ├── docs.html           ← Dokumentasi teknis untuk recruiter
+    ├── netlify.toml        ← TIDAK dipakai Netlify (hanya referensi lama)
+    └── assets/
+        ├── css/
+        │   ├── style.css   ← Styling index.html
+        │   └── docs.css    ← Styling docs.html
+        ├── js/
+        │   ├── app.js      ← Fetch JSON & render sections (index.html)
+        │   └── docs.js     ← Sidebar scroll-spy (docs.html)
+        └── data/
+            ├── stats.json
+            ├── features.json
+            ├── team.json
+            ├── tech.json
+            └── roles.json
 ```
 
 ## Konvensi Kode
@@ -132,6 +147,8 @@ Middleware `CheckRole` di `app/Http/Middleware/CheckRole.php` mengatur akses ber
 - **Windows Defender** bisa memblokir `composer install` dengan error `file_put_contents`. Solusi: tambahkan folder project ke exclusion Defender.
 - Setelah mengubah `composer.json`, jalankan `composer update` bukan `composer install` (lock file lama akan konflik).
 - `database/seeds/DatabaseSeeder.php` (lama, Laravel 6) sudah tidak dipakai — yang aktif adalah `database/seeders/DatabaseSeeder.php`.
+- **`netlify.toml` di root** (`/netlify.toml`) adalah yang aktif dipakai Netlify. Yang ada di `deploy/netlify.toml` tidak dibaca Netlify.
+- **`deploy/` adalah multi-file static site** — `index.html` dan `docs.html` memuat data dari `assets/data/*.json` via JavaScript `fetch()`. Untuk update konten, cukup edit file JSON di `assets/data/`.
 
 ## Deploy
 
@@ -139,6 +156,22 @@ Folder `/deploy` adalah static site terpisah untuk showcase di Netlify. **Tidak 
 
 - `index.html` memuat data dari file JSON via `fetch()` di `app.js`
 - `docs.html` adalah halaman dokumentasi teknis untuk recruiter
-- `netlify.toml` sudah dikonfigurasi: `publish = "."`
+- Data konten tersimpan di `assets/data/*.json` — edit JSON untuk update konten tanpa ubah HTML
 
-Untuk deploy ke Netlify: arahkan Netlify ke folder `deploy/` sebagai publish directory.
+### Netlify Config
+
+`netlify.toml` yang aktif adalah yang ada di **root repo** (`/netlify.toml`), bukan yang di dalam `deploy/`:
+
+```toml
+# /netlify.toml (root)
+[build]
+  publish = "deploy"
+```
+
+Netlify hanya membaca `netlify.toml` dari root repository. File `deploy/netlify.toml` tidak dipakai.
+
+### Cara Deploy Ulang
+
+1. Push perubahan ke GitHub (branch `main`)
+2. Netlify otomatis redeploy dari folder `deploy/`
+3. Jika tidak otomatis: Netlify Dashboard → Deploys → **Trigger deploy**

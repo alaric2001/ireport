@@ -18,21 +18,26 @@ async function renderFeatures() {
         <div class="feature-icon fi-${f.color}"><i class="fa-solid ${f.icon}"></i></div>
         <h3>${f.title}</h3>
         <p>${f.desc}</p>
+        ${f.table ? `<span class="feature-table-badge"><i class="fa-solid fa-table" style="font-size:.6rem;margin-right:4px"></i>${f.table}</span>` : ''}
       </div>`)
     .join('');
 }
 
 async function renderRoles() {
-  const colorMap = { blue: 'ra-blue', amber: 'ra-amber' };
+  const colorMap  = { gray: 'ra-gray', blue: 'ra-blue', amber: 'ra-amber' };
+  const numMap    = { gray: 'rn-gray', blue: 'rn-blue', amber: 'rn-amber' };
   const data = await loadJSON('assets/data/roles.json');
   document.getElementById('roles-container').innerHTML = data
     .map(r => `
       <div class="role-card ${r.key}">
         <div class="role-header">
-          <div class="role-avatar ${colorMap[r.color] || 'ra-blue'}">
+          <div class="role-avatar ${colorMap[r.color] || 'ra-gray'}">
             <i class="fa-solid ${r.icon}"></i>
           </div>
-          <div><h3>${r.title}</h3><p>${r.subtitle}</p></div>
+          <div>
+            <h3>${r.title}</h3>
+            <p>${r.subtitle}</p>
+          </div>
         </div>
         <ul class="role-list">
           ${r.permissions.map(p => `<li><i class="fa-solid fa-check"></i> ${p}</li>`).join('')}
@@ -47,7 +52,11 @@ async function renderTech() {
     .map(t => `
       <div class="tech-badge">
         <i class="${t.icon}" style="color:${t.color}"></i>
-        ${t.name}
+        <div class="tech-badge-info">
+          <span class="tech-badge-name">${t.name}</span>
+          <span class="tech-badge-ver">${t.version}</span>
+          <span class="tech-badge-desc">${t.desc}</span>
+        </div>
       </div>`)
     .join('');
 }

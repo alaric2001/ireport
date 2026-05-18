@@ -1,8 +1,10 @@
 [
-  { "icon": "fa-brands fa-laravel",    "color": "#f05340", "name": "Laravel 10",   "version": "10.50.2" },
-  { "icon": "fa-brands fa-php",        "color": "#777bb3", "name": "PHP 8.2",      "version": "8.2.4"   },
-  { "icon": "fa-solid fa-database",    "color": "#4479a1", "name": "MySQL",         "version": "10.4 MariaDB" },
-  { "icon": "fa-brands fa-bootstrap",  "color": "#7952b3", "name": "Bootstrap",    "version": "4.0.0"   },
-  { "icon": "fa-brands fa-js",         "color": "#f7df1e", "name": "JavaScript",   "version": "ES6+"     },
-  { "icon": "fa-brands fa-github",     "color": "#333",    "name": "GitHub",        "version": "Git"      }
+  { "icon": "fa-brands fa-laravel",   "color": "#f05340", "name": "Laravel",      "version": "10.50.2", "desc": "Backend MVC framework" },
+  { "icon": "fa-brands fa-php",       "color": "#777bb3", "name": "PHP",          "version": "8.2.4",   "desc": "Server-side runtime" },
+  { "icon": "fa-solid fa-database",   "color": "#4479a1", "name": "MariaDB",      "version": "10.4",    "desc": "Relational database" },
+  { "icon": "fa-brands fa-bootstrap", "color": "#7952b3", "name": "Bootstrap",    "version": "4.0",     "desc": "Frontend UI framework" },
+  { "icon": "fa-brands fa-js",        "color": "#ca8a04", "name": "JavaScript",   "version": "ES6+",    "desc": "Client-side interactions" },
+  { "icon": "fa-solid fa-key",        "color": "#2563eb", "name": "Laravel UI",   "version": "4.0",     "desc": "Auth scaffolding" },
+  { "icon": "fa-solid fa-vial",       "color": "#3178c6", "name": "PHPUnit",      "version": "10.1",    "desc": "Testing framework" },
+  { "icon": "fa-brands fa-github",    "color": "#171515", "name": "Git / GitHub", "version": "—",       "desc": "Version control" }
 ]
