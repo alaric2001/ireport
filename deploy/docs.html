@@ -1,54 +1,296 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IReport — Dokumentasi Teknis</title>
-  <meta name="description" content="Dokumentasi teknis lengkap IReport: arsitektur MVC, skema database 6 tabel, 30+ routes, RBAC, UI gallery, dan tech stack Laravel 10." />
+  <meta name="description"
+    content="Dokumentasi teknis lengkap IReport: arsitektur MVC, skema database 6 tabel, 30+ routes, RBAC, UI gallery, dan tech stack Laravel 10." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/docs.css" />
   <style>
     /* UI Gallery */
-    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:8px; }
-    .gallery-item { background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.06); }
-    .gallery-bar { background:#1e293b; padding:8px 12px; display:flex; align-items:center; gap:8px; }
-    .gallery-dots { display:flex; gap:5px; }
-    .gallery-dots span { width:8px; height:8px; border-radius:50%; }
-    .gallery-dots span:nth-child(1){background:#ef4444;} .gallery-dots span:nth-child(2){background:#f59e0b;} .gallery-dots span:nth-child(3){background:#22c55e;}
-    .gallery-url { font-size:.68rem; color:rgba(255,255,255,.4); font-family:'Courier New',monospace; flex:1; text-align:center; }
-    .gallery-body { padding:16px; }
-    .gallery-label { font-size:.7rem; font-weight:700; color:var(--gray-light); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .gallery-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+    }
+
+    .gallery-bar {
+      background: #1e293b;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gallery-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .gallery-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .gallery-dots span:nth-child(1) {
+      background: #ef4444;
+    }
+
+    .gallery-dots span:nth-child(2) {
+      background: #f59e0b;
+    }
+
+    .gallery-dots span:nth-child(3) {
+      background: #22c55e;
+    }
+
+    .gallery-url {
+      font-size: .68rem;
+      color: rgba(255, 255, 255, .4);
+      font-family: 'Courier New', monospace;
+      flex: 1;
+      text-align: center;
+    }
+
+    .gallery-body {
+      padding: 16px;
+    }
+
+    .gallery-label {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--gray-light);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     /* mock report list */
-    .mock-item { background:var(--light); border-radius:8px; padding:10px 12px; margin-bottom:8px; border-left:3px solid var(--primary); display:flex; gap:10px; align-items:flex-start; }
-    .mock-item:nth-child(2){border-left-color:#f59e0b;} .mock-item:nth-child(3){border-left-color:#22c55e;}
-    .mock-icon { width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:.75rem; flex-shrink:0; }
-    .mi-blue{background:#dbeafe;color:#2563eb;} .mi-yellow{background:#fef3c7;color:#d97706;} .mi-green{background:#dcfce7;color:#16a34a;}
-    .mock-info h5 { font-size:.72rem; font-weight:600; color:#0f172a; }
-    .mock-info p  { font-size:.65rem; color:#64748b; margin-top:2px; }
-    .mock-badge { font-size:.58rem; font-weight:700; padding:1px 6px; border-radius:8px; display:inline-block; margin-top:4px; }
-    .mb-proc{background:#fef3c7;color:#92400e;} .mb-new{background:#dbeafe;color:#1d4ed8;} .mb-done{background:#dcfce7;color:#166534;}
+    .mock-item {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--primary);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .mock-item:nth-child(2) {
+      border-left-color: #f59e0b;
+    }
+
+    .mock-item:nth-child(3) {
+      border-left-color: #22c55e;
+    }
+
+    .mock-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+
+    .mi-blue {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    .mi-yellow {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .mi-green {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .mock-info h5 {
+      font-size: .72rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .mock-info p {
+      font-size: .65rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .mock-badge {
+      font-size: .58rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .mb-proc {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .mb-new {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .mb-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
     /* mock admin table */
-    .mock-table { width:100%; border-collapse:collapse; font-size:.7rem; }
-    .mock-table th { background:#1e293b; color:rgba(255,255,255,.7); padding:6px 8px; text-align:left; font-size:.63rem; text-transform:uppercase; }
-    .mock-table td { padding:6px 8px; border-bottom:1px solid #e2e8f0; color:#334155; }
-    .mock-table tr:last-child td { border-bottom:none; }
-    .mock-status { font-size:.6rem; font-weight:700; padding:1px 6px; border-radius:8px; }
-    .ms-proc{background:#fef3c7;color:#92400e;} .ms-new{background:#dbeafe;color:#1d4ed8;} .ms-done{background:#dcfce7;color:#166534;}
+    .mock-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .7rem;
+    }
+
+    .mock-table th {
+      background: #1e293b;
+      color: rgba(255, 255, 255, .7);
+      padding: 6px 8px;
+      text-align: left;
+      font-size: .63rem;
+      text-transform: uppercase;
+    }
+
+    .mock-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    .mock-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .mock-status {
+      font-size: .6rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+    }
+
+    .ms-proc {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .ms-new {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .ms-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
     /* mock profile */
-    .mock-profile { text-align:center; padding:8px 0; }
-    .mock-avatar { width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#2563eb,#7c3aed); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; font-weight:700; margin:0 auto 8px; }
-    .mock-profile h5 { font-size:.8rem; font-weight:700; color:#0f172a; }
-    .mock-profile p { font-size:.68rem; color:#64748b; }
-    .mock-profile-row { display:flex; gap:8px; margin-top:10px; }
-    .mock-stat { flex:1; background:var(--light); border-radius:8px; padding:8px; text-align:center; }
-    .mock-stat .n { font-size:1rem; font-weight:800; color:#2563eb; display:block; }
-    .mock-stat .l { font-size:.6rem; color:#64748b; }
-    .mock-form { margin-top:10px; }
-    .mock-field { background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:6px 10px; font-size:.68rem; color:#64748b; margin-bottom:6px; }
-    @media(max-width:768px){ .gallery-grid{grid-template-columns:1fr;} }
+    .mock-profile {
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    .mock-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 auto 8px;
+    }
+
+    .mock-profile h5 {
+      font-size: .8rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .mock-profile p {
+      font-size: .68rem;
+      color: #64748b;
+    }
+
+    .mock-profile-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mock-stat {
+      flex: 1;
+      background: var(--light);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .mock-stat .n {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #2563eb;
+      display: block;
+    }
+
+    .mock-stat .l {
+      font-size: .6rem;
+      color: #64748b;
+    }
+
+    .mock-form {
+      margin-top: 10px;
+    }
+
+    .mock-field {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: .68rem;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    @media(max-width:768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- TOPBAR -->
@@ -77,15 +319,15 @@
     <aside class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-label">Proyek</div>
-        <a href="#overview"   class="sidebar-link active"><i class="fa-solid fa-house"></i> Overview</a>
-        <a href="#gallery"    class="sidebar-link"><i class="fa-solid fa-images"></i> UI Gallery</a>
+        <a href="#overview" class="sidebar-link active"><i class="fa-solid fa-house"></i> Overview</a>
+        <a href="#gallery" class="sidebar-link"><i class="fa-solid fa-images"></i> UI Gallery</a>
         <a href="#quickstart" class="sidebar-link"><i class="fa-solid fa-rocket"></i> Quickstart</a>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-label">Arsitektur</div>
         <a href="#architecture" class="sidebar-link"><i class="fa-solid fa-diagram-project"></i> Alur Request MVC</a>
-        <a href="#conventions"  class="sidebar-link"><i class="fa-solid fa-file-code"></i> Konvensi Laravel 10</a>
-        <a href="#structure"    class="sidebar-link"><i class="fa-solid fa-folder-tree"></i> Struktur Folder</a>
+        <a href="#conventions" class="sidebar-link"><i class="fa-solid fa-file-code"></i> Konvensi Laravel 10</a>
+        <a href="#structure" class="sidebar-link"><i class="fa-solid fa-folder-tree"></i> Struktur Folder</a>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-label">Data</div>
@@ -100,7 +342,7 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Referensi</div>
         <a href="#tech-stack" class="sidebar-link"><i class="fa-solid fa-code"></i> Tech Stack</a>
-        <a href="#team"       class="sidebar-link"><i class="fa-solid fa-people-group"></i> Tim</a>
+        <a href="#team" class="sidebar-link"><i class="fa-solid fa-people-group"></i> Tim</a>
       </div>
     </aside>
 
@@ -136,10 +378,11 @@
           <div class="info-card">
             <div class="ic-icon" style="background:#fef3c7;color:#d97706"><i class="fa-solid fa-database"></i></div>
             <div class="ic-label">Database</div>
-            <div class="ic-val">MariaDB 10.4</div>
+            <div class="ic-val">Mysql</div>
           </div>
           <div class="info-card">
-            <div class="ic-icon" style="background:#f3e8ff;color:#7c3aed"><i class="fa-solid fa-table-columns"></i></div>
+            <div class="ic-icon" style="background:#f3e8ff;color:#7c3aed"><i class="fa-solid fa-table-columns"></i>
+            </div>
             <div class="ic-label">Tabel Database</div>
             <div class="ic-val">6 tabel relasional</div>
           </div>
@@ -165,8 +408,9 @@
         <div class="callout callout-info">
           <i class="fa-solid fa-circle-info"></i>
           <p><strong>Upgrade Path:</strong> Proyek ini di-upgrade dari Laravel 6 ke Laravel 10 — mencakup
-          migrasi ke anonymous class migrations, FQCN routes, penggantian <code>fideloper/proxy</code>
-          ke built-in <code>TrustProxies</code>, dan refactor <code>Handler.php</code> ke interface <code>Throwable</code>.</p>
+            migrasi ke anonymous class migrations, FQCN routes, penggantian <code>fideloper/proxy</code>
+            ke built-in <code>TrustProxies</code>, dan refactor <code>Handler.php</code> ke interface
+            <code>Throwable</code>.</p>
         </div>
       </section>
 
@@ -174,7 +418,8 @@
       <section class="doc-section" id="gallery">
         <span class="section-badge"><i class="fa-solid fa-images"></i> UI Gallery</span>
         <h2 class="doc-h2">Tampilan Antarmuka Aplikasi</h2>
-        <p class="doc-p">Mockup visual representatif dari tiga tampilan utama dalam aplikasi: halaman laporan publik, panel admin, dan profil pengguna.</p>
+        <p class="doc-p">Mockup visual representatif dari tiga tampilan utama dalam aplikasi: halaman laporan publik,
+          panel admin, dan profil pengguna.</p>
 
         <div class="gallery-grid">
 
@@ -223,7 +468,11 @@
               <div class="gallery-label"><i class="fa-solid fa-user-shield"></i> Panel Admin — Kelola Laporan</div>
               <table class="mock-table">
                 <thead>
-                  <tr><th>Judul</th><th>Provinsi</th><th>Status</th></tr>
+                  <tr>
+                    <th>Judul</th>
+                    <th>Provinsi</th>
+                    <th>Status</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -280,7 +529,10 @@
 
         <div class="callout callout-info" style="margin-top:20px">
           <i class="fa-solid fa-circle-info"></i>
-          <p>Mockup di atas adalah representasi visual berdasarkan struktur data asli di database. Kolom <code>status</code> pada tabel <code>laporan</code> memiliki nilai: <strong>Baru</strong>, <strong>Diproses</strong>, <strong>Selesai</strong>. Profil terhubung ke <code>users</code> via relasi 1-to-1 di tabel <code>profile</code>.</p>
+          <p>Mockup di atas adalah representasi visual berdasarkan struktur data asli di database. Kolom
+            <code>status</code> pada tabel <code>laporan</code> memiliki nilai: <strong>Baru</strong>,
+            <strong>Diproses</strong>, <strong>Selesai</strong>. Profil terhubung ke <code>users</code> via relasi
+            1-to-1 di tabel <code>profile</code>.</p>
         </div>
       </section>
 
@@ -313,7 +565,9 @@
 
         <div class="callout callout-tip">
           <i class="fa-solid fa-circle-check"></i>
-          <p>Semua akun seed menggunakan password <strong>123</strong> (bcrypt). Di Windows, tambahkan folder project ke exclusion Windows Defender jika <code>composer install</code> gagal dengan error <code>file_put_contents</code>.</p>
+          <p>Semua akun seed menggunakan password <strong>123</strong> (bcrypt). Di Windows, tambahkan folder project ke
+            exclusion Windows Defender jika <code>composer install</code> gagal dengan error
+            <code>file_put_contents</code>.</p>
         </div>
       </section>
 
@@ -323,11 +577,13 @@
       <section class="doc-section" id="architecture">
         <span class="section-badge"><i class="fa-solid fa-diagram-project"></i> Arsitektur</span>
         <h2 class="doc-h2">Alur Request MVC</h2>
-        <p class="doc-p">Laravel mengikuti pola MVC. Setiap HTTP request melewati pipeline berikut sebelum menghasilkan response.</p>
+        <p class="doc-p">Laravel mengikuti pola MVC. Setiap HTTP request melewati pipeline berikut sebelum menghasilkan
+          response.</p>
 
         <div class="arch-diagram">
           <div class="arch-row">
-            <div class="arch-box ab-browser"><i class="fa-solid fa-globe"></i><br>Browser<br><small>HTTP Request</small></div>
+            <div class="arch-box ab-browser"><i class="fa-solid fa-globe"></i><br>Browser<br><small>HTTP Request</small>
+            </div>
             <span class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></span>
             <div class="arch-box ab-mid">Router<br><small>routes/web.php</small></div>
             <span class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></span>
@@ -337,11 +593,14 @@
             <span class="arch-arrow" style="transform:rotate(90deg)"><i class="fa-solid fa-arrow-right"></i></span>
           </div>
           <div class="arch-row">
-            <div class="arch-box ab-model"><i class="fa-solid fa-database"></i><br>Model<br><small>Eloquent ORM</small></div>
+            <div class="arch-box ab-model"><i class="fa-solid fa-database"></i><br>Model<br><small>Eloquent ORM</small>
+            </div>
             <span class="arch-arrow"><i class="fa-solid fa-arrows-left-right"></i></span>
-            <div class="arch-box ab-ctrl"><i class="fa-solid fa-gear"></i><br>Controller<br><small>Business Logic</small></div>
+            <div class="arch-box ab-ctrl"><i class="fa-solid fa-gear"></i><br>Controller<br><small>Business
+                Logic</small></div>
             <span class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></span>
-            <div class="arch-box ab-blade"><i class="fa-solid fa-file-code"></i><br>Blade View<br><small>HTML Response</small></div>
+            <div class="arch-box ab-blade"><i class="fa-solid fa-file-code"></i><br>Blade View<br><small>HTML
+                Response</small></div>
           </div>
           <div class="arch-row" style="justify-content:flex-start">
             <div class="arch-box ab-db"><i class="fa-solid fa-server"></i><br>MariaDB<br><small>6 Tables</small></div>
@@ -353,10 +612,12 @@
       <section class="doc-section" id="conventions">
         <span class="section-badge"><i class="fa-solid fa-file-code"></i> Konvensi</span>
         <h2 class="doc-h2">Konvensi Kode Laravel 10</h2>
-        <p class="doc-p">Beberapa konvensi penting yang diterapkan dalam proyek ini — terutama terkait upgrade dari Laravel 6.</p>
+        <p class="doc-p">Beberapa konvensi penting yang diterapkan dalam proyek ini — terutama terkait upgrade dari
+          Laravel 6.</p>
 
         <h3 class="doc-h3">1. Model di <code>app/</code> — bukan <code>app/Models/</code></h3>
-        <p class="doc-p">Proyek ini mewarisi struktur Laravel 6 di mana semua Model berada langsung di folder <code>app/</code>. Namespace tetap <code>App\ModelName</code>.</p>
+        <p class="doc-p">Proyek ini mewarisi struktur Laravel 6 di mana semua Model berada langsung di folder
+          <code>app/</code>. Namespace tetap <code>App\ModelName</code>.</p>
         <div class="code-block">
           <span class="code-tag">app/Laporan.php</span>
           <pre><span class="c-key">namespace</span> <span class="c-str">App</span>;   <span class="c-comment">// BUKAN App\Models</span>
@@ -370,7 +631,8 @@
         </div>
 
         <h3 class="doc-h3">2. Routes FQCN — Fully Qualified Class Name</h3>
-        <p class="doc-p">Laravel 10 tidak lagi menyuntikkan namespace otomatis ke dalam routes. Semua controller harus di-import secara eksplisit.</p>
+        <p class="doc-p">Laravel 10 tidak lagi menyuntikkan namespace otomatis ke dalam routes. Semua controller harus
+          di-import secara eksplisit.</p>
         <div class="code-block">
           <span class="code-tag">routes/web.php</span>
           <pre><span class="c-comment">// ✅ BENAR — Laravel 10 (FQCN)</span>
@@ -420,7 +682,9 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
 
         <div class="callout callout-warn">
           <i class="fa-solid fa-triangle-exclamation"></i>
-          <p><strong>Penting:</strong> <code>FoundationServiceProvider</code> harus tetap ada di <code>config/app.php</code> providers. Jika dihapus, akan muncul error <code>Target [MaintenanceMode] is not instantiable</code> karena binding kontrak tidak terdaftar.</p>
+          <p><strong>Penting:</strong> <code>FoundationServiceProvider</code> harus tetap ada di
+            <code>config/app.php</code> providers. Jika dihapus, akan muncul error
+            <code>Target [MaintenanceMode] is not instantiable</code> karena binding kontrak tidak terdaftar.</p>
         </div>
       </section>
 
@@ -430,48 +694,61 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
         <h2 class="doc-h2">Struktur Folder Proyek</h2>
 
         <div class="folder-tree">
-<span class="ft-dir">IREPORT/</span>
-├── <span class="ft-file">netlify.toml</span>           <span class="ft-comment">← publish = "deploy" (root, aktif)</span>
-├── <span class="ft-file">README.md</span>
-├── <span class="ft-file">CLAUDE.md</span>              <span class="ft-comment">← Panduan konteks AI assistant</span>
-│
-├── <span class="ft-dir">app/</span>
-│   ├── <span class="ft-dir">Http/Controllers/</span>
-│   │   ├── <span class="ft-dir">Auth/</span>              <span class="ft-comment">← Login, Register, Reset Password (Laravel UI)</span>
-│   │   ├── <span class="ft-file">BeritaController.php</span>
-│   │   ├── <span class="ft-file">KomentarController.php</span>
-│   │   ├── <span class="ft-file">LaporanController.php</span>
-│   │   ├── <span class="ft-file">OurteamController.php</span>
-│   │   └── <span class="ft-file">ProfileController.php</span>
-│   ├── <span class="ft-dir">Http/Middleware/</span>
-│   │   ├── <span class="ft-file">CheckRole.php</span>      <span class="ft-comment">← RBAC: cek users.role (0/1/2)</span>
-│   │   ├── <span class="ft-file">PreventRequestsDuringMaintenance.php</span>
-│   │   └── <span class="ft-file">TrustProxies.php</span>   <span class="ft-comment">← Built-in L10, menggantikan fideloper/proxy</span>
-│   ├── <span class="ft-file">Berita.php</span>            <span class="ft-comment">← Model di app/ BUKAN app/Models/ (warisan L6)</span>
-│   ├── <span class="ft-file">Komentar.php</span>
-│   ├── <span class="ft-file">Laporan.php</span>
-│   ├── <span class="ft-file">Ourteam.php</span>
-│   ├── <span class="ft-file">Profile.php</span>
-│   └── <span class="ft-file">User.php</span>
-│
-├── <span class="ft-dir">database/</span>
-│   ├── <span class="ft-dir">migrations/</span>            <span class="ft-comment">← 9 file, semua anonymous class syntax L10</span>
-│   └── <span class="ft-dir">seeders/</span>               <span class="ft-comment">← namespace Database\Seeders (bukan database/seeds/)</span>
-│
-├── <span class="ft-dir">resources/views/</span>
-│   ├── <span class="ft-dir">admin/</span>                 <span class="ft-comment">← Panel admin: laporan, berita, users, ourteam</span>
-│   ├── <span class="ft-dir">auth/</span>                  <span class="ft-comment">← Login & register (blade dari laravel/ui)</span>
-│   ├── <span class="ft-dir">berita/</span>
-│   ├── <span class="ft-dir">laporan/</span>               <span class="ft-comment">← index, show, create, edit</span>
-│   └── <span class="ft-dir">layouts/</span>               <span class="ft-comment">← app.blade.php base layout Bootstrap 4</span>
-│
-├── <span class="ft-dir">routes/</span>
-│   └── <span class="ft-file">web.php</span>                <span class="ft-comment">← 30+ routes, semua FQCN [Controller::class, 'method']</span>
-│
-└── <span class="ft-dir">deploy/</span>                   <span class="ft-comment">← Static showcase Netlify (tidak terhubung ke Laravel)</span>
-    ├── <span class="ft-file">index.html</span>             <span class="ft-comment">← Landing page, data dari JSON via fetch()</span>
-    ├── <span class="ft-file">docs.html</span>              <span class="ft-comment">← Dokumen ini</span>
-    └── <span class="ft-dir">assets/</span> (css, js, data JSON)
+          <span class="ft-dir">IREPORT/</span>
+          ├── <span class="ft-file">netlify.toml</span> <span class="ft-comment">← publish = "deploy" (root,
+            aktif)</span>
+          ├── <span class="ft-file">README.md</span>
+          ├── <span class="ft-file">CLAUDE.md</span> <span class="ft-comment">← Panduan konteks AI assistant</span>
+          │
+          ├── <span class="ft-dir">app/</span>
+          │ ├── <span class="ft-dir">Http/Controllers/</span>
+          │ │ ├── <span class="ft-dir">Auth/</span> <span class="ft-comment">← Login, Register, Reset Password (Laravel
+            UI)</span>
+          │ │ ├── <span class="ft-file">BeritaController.php</span>
+          │ │ ├── <span class="ft-file">KomentarController.php</span>
+          │ │ ├── <span class="ft-file">LaporanController.php</span>
+          │ │ ├── <span class="ft-file">OurteamController.php</span>
+          │ │ └── <span class="ft-file">ProfileController.php</span>
+          │ ├── <span class="ft-dir">Http/Middleware/</span>
+          │ │ ├── <span class="ft-file">CheckRole.php</span> <span class="ft-comment">← RBAC: cek users.role
+            (0/1/2)</span>
+          │ │ ├── <span class="ft-file">PreventRequestsDuringMaintenance.php</span>
+          │ │ └── <span class="ft-file">TrustProxies.php</span> <span class="ft-comment">← Built-in L10, menggantikan
+            fideloper/proxy</span>
+          │ ├── <span class="ft-file">Berita.php</span> <span class="ft-comment">← Model di app/ BUKAN app/Models/
+            (warisan L6)</span>
+          │ ├── <span class="ft-file">Komentar.php</span>
+          │ ├── <span class="ft-file">Laporan.php</span>
+          │ ├── <span class="ft-file">Ourteam.php</span>
+          │ ├── <span class="ft-file">Profile.php</span>
+          │ └── <span class="ft-file">User.php</span>
+          │
+          ├── <span class="ft-dir">database/</span>
+          │ ├── <span class="ft-dir">migrations/</span> <span class="ft-comment">← 9 file, semua anonymous class syntax
+            L10</span>
+          │ └── <span class="ft-dir">seeders/</span> <span class="ft-comment">← namespace Database\Seeders (bukan
+            database/seeds/)</span>
+          │
+          ├── <span class="ft-dir">resources/views/</span>
+          │ ├── <span class="ft-dir">admin/</span> <span class="ft-comment">← Panel admin: laporan, berita, users,
+            ourteam</span>
+          │ ├── <span class="ft-dir">auth/</span> <span class="ft-comment">← Login & register (blade dari
+            laravel/ui)</span>
+          │ ├── <span class="ft-dir">berita/</span>
+          │ ├── <span class="ft-dir">laporan/</span> <span class="ft-comment">← index, show, create, edit</span>
+          │ └── <span class="ft-dir">layouts/</span> <span class="ft-comment">← app.blade.php base layout Bootstrap
+            4</span>
+          │
+          ├── <span class="ft-dir">routes/</span>
+          │ └── <span class="ft-file">web.php</span> <span class="ft-comment">← 30+ routes, semua FQCN
+            [Controller::class, 'method']</span>
+          │
+          └── <span class="ft-dir">deploy/</span> <span class="ft-comment">← Static showcase Netlify (tidak terhubung ke
+            Laravel)</span>
+          ├── <span class="ft-file">index.html</span> <span class="ft-comment">← Landing page, data dari JSON via
+            fetch()</span>
+          ├── <span class="ft-file">docs.html</span> <span class="ft-comment">← Dokumen ini</span>
+          └── <span class="ft-dir">assets/</span> (css, js, data JSON)
         </div>
       </section>
 
@@ -481,90 +758,126 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
       <section class="doc-section" id="schema">
         <span class="section-badge"><i class="fa-solid fa-database"></i> Database</span>
         <h2 class="doc-h2">Skema Database — 6 Tabel</h2>
-        <p class="doc-p">Database <code>db_ireport</code> terdiri dari 6 tabel. Semua migration menggunakan anonymous class Laravel 10.</p>
+        <p class="doc-p">Database <code>db_ireport</code> terdiri dari 6 tabel. Semua migration menggunakan anonymous
+          class Laravel 10.</p>
 
         <div class="schema-grid">
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>users</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">name</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">email</span><span class="sf-type">varchar unique</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">password</span><span class="sf-type">varchar · bcrypt</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">pengajuan</span><span class="sf-type">varchar null</span></div>
-              <div class="schema-field"><span class="sf-name">role</span><span class="sf-type">int · default 0</span></div>
-              <div class="schema-field"><span class="sf-name">timestamps</span><span class="sf-type">created_at · updated_at</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">name</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">email</span><span class="sf-type">varchar
+                  unique</span><span class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">password</span><span class="sf-type">varchar ·
+                  bcrypt</span><span class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">pengajuan</span><span class="sf-type">varchar null</span>
+              </div>
+              <div class="schema-field"><span class="sf-name">role</span><span class="sf-type">int · default 0</span>
+              </div>
+              <div class="schema-field"><span class="sf-name">timestamps</span><span class="sf-type">created_at ·
+                  updated_at</span></div>
             </div>
           </div>
 
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>profile</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">tempatLahir</span><span class="sf-type">varchar(255)</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">tempatLahir</span><span
+                  class="sf-type">varchar(255)</span></div>
               <div class="schema-field"><span class="sf-name">tanggalLahir</span><span class="sf-type">date</span></div>
-              <div class="schema-field"><span class="sf-name">pengajuan</span><span class="sf-type">varchar · default '-'</span></div>
+              <div class="schema-field"><span class="sf-name">pengajuan</span><span class="sf-type">varchar · default
+                  '-'</span></div>
               <div class="schema-field"><span class="sf-name">foto</span><span class="sf-type">varchar null</span></div>
               <div class="schema-field"><span class="sf-name">point</span><span class="sf-type">int null</span></div>
-              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint unsigned</span><span class="sf-fk">FK→users</span></div>
+              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint
+                  unsigned</span><span class="sf-fk">FK→users</span></div>
             </div>
           </div>
 
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>laporan</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">judul</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">deskripsi</span><span class="sf-type">text</span><span class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">judul</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">deskripsi</span><span class="sf-type">text</span><span
+                  class="sf-nn">NN</span></div>
               <div class="schema-field"><span class="sf-name">foto</span><span class="sf-type">varchar null</span></div>
-              <div class="schema-field"><span class="sf-name">provinsi</span><span class="sf-type">varchar null</span></div>
-              <div class="schema-field"><span class="sf-name">kategori</span><span class="sf-type">varchar null</span></div>
-              <div class="schema-field"><span class="sf-name">status</span><span class="sf-type">varchar null</span></div>
+              <div class="schema-field"><span class="sf-name">provinsi</span><span class="sf-type">varchar null</span>
+              </div>
+              <div class="schema-field"><span class="sf-name">kategori</span><span class="sf-type">varchar null</span>
+              </div>
+              <div class="schema-field"><span class="sf-name">status</span><span class="sf-type">varchar null</span>
+              </div>
               <div class="schema-field"><span class="sf-name">vote</span><span class="sf-type">int null</span></div>
-              <div class="schema-field"><span class="sf-name">tanggal</span><span class="sf-type">date</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint unsigned</span><span class="sf-fk">FK→users</span></div>
+              <div class="schema-field"><span class="sf-name">tanggal</span><span class="sf-type">date</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint
+                  unsigned</span><span class="sf-fk">FK→users</span></div>
             </div>
           </div>
 
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>berita</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">judul</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">deskripsi</span><span class="sf-type">text</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">sumber</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">bigint unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">judul</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">deskripsi</span><span class="sf-type">text</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">sumber</span><span
+                  class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
               <div class="schema-field"><span class="sf-name">tgl</span><span class="sf-type">date null</span></div>
               <div class="schema-field"><span class="sf-name">foto</span><span class="sf-type">varchar null</span></div>
-              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint null</span><span class="sf-fk">FK→users</span></div>
+              <div class="schema-field"><span class="sf-name">user_id</span><span class="sf-type">bigint
+                  null</span><span class="sf-fk">FK→users</span></div>
             </div>
           </div>
 
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>komentar</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">int unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">isi</span><span class="sf-type">text</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">profil_id</span><span class="sf-type">int unsigned</span><span class="sf-fk">FK→profile</span></div>
-              <div class="schema-field"><span class="sf-name">laporan_id</span><span class="sf-type">int unsigned</span><span class="sf-fk">FK→laporan</span></div>
-              <div class="schema-field"><span class="sf-name">timestamps</span><span class="sf-type">created_at · updated_at</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">int unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">isi</span><span class="sf-type">text</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">profil_id</span><span class="sf-type">int
+                  unsigned</span><span class="sf-fk">FK→profile</span></div>
+              <div class="schema-field"><span class="sf-name">laporan_id</span><span class="sf-type">int
+                  unsigned</span><span class="sf-fk">FK→laporan</span></div>
+              <div class="schema-field"><span class="sf-name">timestamps</span><span class="sf-type">created_at ·
+                  updated_at</span></div>
             </div>
           </div>
 
           <div class="schema-table">
             <div class="schema-head"><i class="fa-solid fa-table"></i><span>ourteam</span></div>
             <div class="schema-fields">
-              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">int unsigned</span><span class="sf-pk">PK</span></div>
-              <div class="schema-field"><span class="sf-name">foto</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">nama</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-name">quote</span><span class="sf-type">varchar(255)</span><span class="sf-nn">NN</span></div>
-              <div class="schema-field"><span class="sf-type" style="color:#94a3b8;font-size:.72rem;font-style:italic">no timestamps</span></div>
+              <div class="schema-field"><span class="sf-name">id</span><span class="sf-type">int unsigned</span><span
+                  class="sf-pk">PK</span></div>
+              <div class="schema-field"><span class="sf-name">foto</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">nama</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-name">quote</span><span class="sf-type">varchar(255)</span><span
+                  class="sf-nn">NN</span></div>
+              <div class="schema-field"><span class="sf-type"
+                  style="color:#94a3b8;font-size:.72rem;font-style:italic">no timestamps</span></div>
             </div>
           </div>
         </div>
 
         <div class="callout callout-info" style="margin-top:20px">
           <i class="fa-solid fa-circle-info"></i>
-          <p>Tabel <code>komentar</code> ber-FK ke <code>profile</code> (bukan ke <code>users</code>) — ini desain asli sistem. Relasi dibuat dari profil pemberi komentar, bukan langsung dari user-nya.</p>
+          <p>Tabel <code>komentar</code> ber-FK ke <code>profile</code> (bukan ke <code>users</code>) — ini desain asli
+            sistem. Relasi dibuat dari profil pemberi komentar, bukan langsung dari user-nya.</p>
         </div>
       </section>
 
@@ -574,44 +887,205 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
       <section class="doc-section" id="routes">
         <span class="section-badge"><i class="fa-solid fa-route"></i> Routes</span>
         <h2 class="doc-h2">Web Routes (FQCN)</h2>
-        <p class="doc-p">Semua route di <code>routes/web.php</code> menggunakan sintaks array FQCN sesuai standar Laravel 10. Badge warna menunjukkan level akses yang dibutuhkan.</p>
+        <p class="doc-p">Semua route di <code>routes/web.php</code> menggunakan sintaks array FQCN sesuai standar
+          Laravel 10. Badge warna menunjukkan level akses yang dibutuhkan.</p>
 
         <table class="routes-table">
           <thead>
-            <tr><th>Method</th><th>Path</th><th>Aksi</th><th>Akses</th></tr>
+            <tr>
+              <th>Method</th>
+              <th>Path</th>
+              <th>Aksi</th>
+              <th>Akses</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/</td><td>Beranda / landing</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/login</td><td>Form login</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/login</td><td>Proses autentikasi</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/register</td><td>Form registrasi</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/register</td><td>Simpan akun baru</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/logout</td><td>Logout &amp; invalidasi session</td><td><span class="route-role role-auth">Auth</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/laporan</td><td>Daftar semua laporan</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/laporan/{id}</td><td>Detail laporan + komentar</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/laporan/create</td><td>Form buat laporan</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/laporan</td><td>Simpan laporan + foto</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/laporan/{id}/edit</td><td>Form edit laporan</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-put">PUT</span></td><td class="route-path">/laporan/{id}</td><td>Update laporan</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-del">DEL</span></td><td class="route-path">/laporan/{id}</td><td>Hapus laporan</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/laporan/{id}/vote</td><td>Toggle upvote</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/berita</td><td>Daftar berita publik</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/berita/{id}</td><td>Detail berita</td><td><span class="route-role role-pub">Publik</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/komentar</td><td>Kirim komentar</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-put">PUT</span></td><td class="route-path">/komentar/{id}</td><td>Edit komentar</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-del">DEL</span></td><td class="route-path">/komentar/{id}</td><td>Hapus komentar</td><td><span class="route-role role-rep">Reporter</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/profil</td><td>Lihat profil sendiri</td><td><span class="route-role role-auth">Auth</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/profil</td><td>Update profil &amp; foto diri</td><td><span class="route-role role-auth">Auth</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/admin/laporan</td><td>Moderasi semua laporan</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/admin/laporan/{id}/status</td><td>Ubah status laporan</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-del">DEL</span></td><td class="route-path">/admin/laporan/{id}</td><td>Hapus laporan manapun</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/admin/berita/create</td><td>Form buat berita</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/admin/berita</td><td>Simpan berita baru</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/admin/users</td><td>Daftar semua pengguna</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/admin/users/{id}/role</td><td>Ubah role pengguna</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-del">DEL</span></td><td class="route-path">/admin/users/{id}</td><td>Hapus akun pengguna</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-post">POST</span></td><td class="route-path">/admin/pengajuan/{id}/approve</td><td>Approve reporter baru</td><td><span class="route-role role-admin">Admin</span></td></tr>
-            <tr><td><span class="method m-get">GET</span></td><td class="route-path">/admin/ourteam</td><td>Kelola data tim</td><td><span class="route-role role-admin">Admin</span></td></tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/</td>
+              <td>Beranda / landing</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/login</td>
+              <td>Form login</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/login</td>
+              <td>Proses autentikasi</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/register</td>
+              <td>Form registrasi</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/register</td>
+              <td>Simpan akun baru</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/logout</td>
+              <td>Logout &amp; invalidasi session</td>
+              <td><span class="route-role role-auth">Auth</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/laporan</td>
+              <td>Daftar semua laporan</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/laporan/{id}</td>
+              <td>Detail laporan + komentar</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/laporan/create</td>
+              <td>Form buat laporan</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/laporan</td>
+              <td>Simpan laporan + foto</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/laporan/{id}/edit</td>
+              <td>Form edit laporan</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-put">PUT</span></td>
+              <td class="route-path">/laporan/{id}</td>
+              <td>Update laporan</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-del">DEL</span></td>
+              <td class="route-path">/laporan/{id}</td>
+              <td>Hapus laporan</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/laporan/{id}/vote</td>
+              <td>Toggle upvote</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/berita</td>
+              <td>Daftar berita publik</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/berita/{id}</td>
+              <td>Detail berita</td>
+              <td><span class="route-role role-pub">Publik</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/komentar</td>
+              <td>Kirim komentar</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-put">PUT</span></td>
+              <td class="route-path">/komentar/{id}</td>
+              <td>Edit komentar</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-del">DEL</span></td>
+              <td class="route-path">/komentar/{id}</td>
+              <td>Hapus komentar</td>
+              <td><span class="route-role role-rep">Reporter</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/profil</td>
+              <td>Lihat profil sendiri</td>
+              <td><span class="route-role role-auth">Auth</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/profil</td>
+              <td>Update profil &amp; foto diri</td>
+              <td><span class="route-role role-auth">Auth</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/admin/laporan</td>
+              <td>Moderasi semua laporan</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/admin/laporan/{id}/status</td>
+              <td>Ubah status laporan</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-del">DEL</span></td>
+              <td class="route-path">/admin/laporan/{id}</td>
+              <td>Hapus laporan manapun</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/admin/berita/create</td>
+              <td>Form buat berita</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/admin/berita</td>
+              <td>Simpan berita baru</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/admin/users</td>
+              <td>Daftar semua pengguna</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/admin/users/{id}/role</td>
+              <td>Ubah role pengguna</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-del">DEL</span></td>
+              <td class="route-path">/admin/users/{id}</td>
+              <td>Hapus akun pengguna</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-post">POST</span></td>
+              <td class="route-path">/admin/pengajuan/{id}/approve</td>
+              <td>Approve reporter baru</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
+            <tr>
+              <td><span class="method m-get">GET</span></td>
+              <td class="route-path">/admin/ourteam</td>
+              <td>Kelola data tim</td>
+              <td><span class="route-role role-admin">Admin</span></td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -622,7 +1096,8 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
       <section class="doc-section" id="features">
         <span class="section-badge"><i class="fa-solid fa-star"></i> Fitur &amp; RBAC</span>
         <h2 class="doc-h2">Matriks Fitur per Role</h2>
-        <p class="doc-p">Tabel berikut merinci hak akses setiap fitur berdasarkan nilai kolom <code>users.role</code>.</p>
+        <p class="doc-p">Tabel berikut merinci hak akses setiap fitur berdasarkan nilai kolom <code>users.role</code>.
+        </p>
 
         <table class="matrix">
           <thead>
@@ -634,20 +1109,90 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
             </tr>
           </thead>
           <tbody>
-            <tr><td>Lihat daftar &amp; detail laporan</td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Filter laporan per provinsi</td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Baca berita infrastruktur</td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Registrasi &amp; ajukan sebagai Reporter</td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td></tr>
-            <tr><td>Buat &amp; kelola laporan pribadi</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Upload foto bukti kerusakan</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Upvote laporan orang lain</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Tulis &amp; edit komentar</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Kelola profil &amp; foto diri</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Moderasi &amp; ubah status laporan</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Publikasi &amp; edit berita</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Approve pengajuan reporter</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Promosi pengguna &amp; hapus akun</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
-            <tr><td>Kelola data Tim (ourteam)</td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td><td style="text-align:center"><i class="fa-solid fa-check check"></i></td></tr>
+            <tr>
+              <td>Lihat daftar &amp; detail laporan</td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Filter laporan per provinsi</td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Baca berita infrastruktur</td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Registrasi &amp; ajukan sebagai Reporter</td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+            </tr>
+            <tr>
+              <td>Buat &amp; kelola laporan pribadi</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Upload foto bukti kerusakan</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Upvote laporan orang lain</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Tulis &amp; edit komentar</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Kelola profil &amp; foto diri</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Moderasi &amp; ubah status laporan</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Publikasi &amp; edit berita</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Approve pengajuan reporter</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Promosi pengguna &amp; hapus akun</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Kelola data Tim (ourteam)</td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-minus cross"></i></td>
+              <td style="text-align:center"><i class="fa-solid fa-check check"></i></td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -664,42 +1209,50 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
             <div class="sec-icon" style="background:#dbeafe;color:#2563eb"><i class="fa-solid fa-key"></i></div>
             <div>
               <h4>bcrypt Password Hashing</h4>
-              <p>Semua password di-hash dengan <code>Hash::make()</code>. Password plaintext tidak pernah disimpan. Seeder menggunakan <code>Hash::make('123')</code> untuk semua akun awal.</p>
+              <p>Semua password di-hash dengan <code>Hash::make()</code>. Password plaintext tidak pernah disimpan.
+                Seeder menggunakan <code>Hash::make('123')</code> untuk semua akun awal.</p>
             </div>
           </div>
           <div class="sec-card">
-            <div class="sec-icon" style="background:#dcfce7;color:#16a34a"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="sec-icon" style="background:#dcfce7;color:#16a34a"><i class="fa-solid fa-shield-halved"></i>
+            </div>
             <div>
               <h4>CSRF Protection</h4>
-              <p>Middleware <code>VerifyCsrfToken</code> aktif untuk semua form POST/PUT/DELETE. Setiap request melewati validasi token CSRF bawaan Laravel.</p>
+              <p>Middleware <code>VerifyCsrfToken</code> aktif untuk semua form POST/PUT/DELETE. Setiap request melewati
+                validasi token CSRF bawaan Laravel.</p>
             </div>
           </div>
           <div class="sec-card">
             <div class="sec-icon" style="background:#fef3c7;color:#d97706"><i class="fa-solid fa-user-lock"></i></div>
             <div>
               <h4>RBAC via CheckRole Middleware</h4>
-              <p>Middleware <code>CheckRole</code> membaca kolom <code>role</code> (int 0/1/2) dari tabel <code>users</code> dan memblokir akses ke route yang memerlukan level lebih tinggi.</p>
+              <p>Middleware <code>CheckRole</code> membaca kolom <code>role</code> (int 0/1/2) dari tabel
+                <code>users</code> dan memblokir akses ke route yang memerlukan level lebih tinggi.</p>
             </div>
           </div>
           <div class="sec-card">
             <div class="sec-icon" style="background:#f3e8ff;color:#7c3aed"><i class="fa-solid fa-file-shield"></i></div>
             <div>
               <h4>File Upload Validation</h4>
-              <p>Upload foto laporan dan profil divalidasi tipe MIME dan ukuran di sisi server sebelum disimpan ke direktori <code>public/</code>.</p>
+              <p>Upload foto laporan dan profil divalidasi tipe MIME dan ukuran di sisi server sebelum disimpan ke
+                direktori <code>public/</code>.</p>
             </div>
           </div>
           <div class="sec-card">
             <div class="sec-icon" style="background:#ccfbf1;color:#0d9488"><i class="fa-solid fa-input-text"></i></div>
             <div>
               <h4>Input Sanitization</h4>
-              <p>Middleware <code>TrimStrings</code> memotong whitespace otomatis. Semua input tervalidasi melalui Laravel Form Request sebelum diproses controller.</p>
+              <p>Middleware <code>TrimStrings</code> memotong whitespace otomatis. Semua input tervalidasi melalui
+                Laravel Form Request sebelum diproses controller.</p>
             </div>
           </div>
           <div class="sec-card">
-            <div class="sec-icon" style="background:#fee2e2;color:#dc2626"><i class="fa-solid fa-person-walking-arrow-right"></i></div>
+            <div class="sec-icon" style="background:#fee2e2;color:#dc2626"><i
+                class="fa-solid fa-person-walking-arrow-right"></i></div>
             <div>
               <h4>Session Authentication</h4>
-              <p>Auth berbasis session menggunakan Laravel UI. Session diinvalidasi saat logout — mencegah session fixation attack.</p>
+              <p>Auth berbasis session menggunakan Laravel UI. Session diinvalidasi saat logout — mencegah session
+                fixation attack.</p>
             </div>
           </div>
         </div>
@@ -714,55 +1267,82 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
 
         <table class="tech-table">
           <thead>
-            <tr><th>Teknologi</th><th>Versi</th><th>Peran dalam Sistem</th></tr>
+            <tr>
+              <th>Teknologi</th>
+              <th>Versi</th>
+              <th>Peran dalam Sistem</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><div class="tt-name"><i class="fa-brands fa-laravel" style="color:#f05340"></i> Laravel</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-brands fa-laravel" style="color:#f05340"></i> Laravel</div>
+              </td>
               <td><span class="tt-ver">10.50.2</span></td>
-              <td class="tt-desc">Backend framework MVC — routing FQCN, Eloquent ORM, Blade, middleware stack, auth scaffolding</td>
+              <td class="tt-desc">Backend framework MVC — routing FQCN, Eloquent ORM, Blade, middleware stack, auth
+                scaffolding</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-brands fa-php" style="color:#777bb3"></i> PHP</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-brands fa-php" style="color:#777bb3"></i> PHP</div>
+              </td>
               <td><span class="tt-ver">8.2.4</span></td>
               <td class="tt-desc">Runtime server-side; fitur PHP 8.2 (readonly properties, union types, fibers)</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-solid fa-database" style="color:#4479a1"></i> MariaDB</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-solid fa-database" style="color:#4479a1"></i> MariaDB</div>
+              </td>
               <td><span class="tt-ver">10.4</span></td>
-              <td class="tt-desc">Database relasional — 6 tabel dengan relasi FK, dikelola via Eloquent ORM &amp; migrations</td>
+              <td class="tt-desc">Database relasional — 6 tabel dengan relasi FK, dikelola via Eloquent ORM &amp;
+                migrations</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-brands fa-bootstrap" style="color:#7952b3"></i> Bootstrap</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-brands fa-bootstrap" style="color:#7952b3"></i> Bootstrap</div>
+              </td>
               <td><span class="tt-ver">4.0</span></td>
               <td class="tt-desc">Frontend UI framework — grid layout, komponen, responsivitas mobile-first</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-brands fa-js" style="color:#ca8a04"></i> JavaScript</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-brands fa-js" style="color:#ca8a04"></i> JavaScript</div>
+              </td>
               <td><span class="tt-ver">ES6+</span></td>
               <td class="tt-desc">Interaksi client-side: voting tanpa reload, preview foto upload, filter dinamis</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-solid fa-key" style="color:#2563eb"></i> Laravel UI</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-solid fa-key" style="color:#2563eb"></i> Laravel UI</div>
+              </td>
               <td><span class="tt-ver">4.0</span></td>
               <td class="tt-desc">Auth scaffolding — login, register, forgot password, reset password (Blade views)</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-solid fa-vial" style="color:#3178c6"></i> PHPUnit</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-solid fa-vial" style="color:#3178c6"></i> PHPUnit</div>
+              </td>
               <td><span class="tt-ver">10.1</span></td>
-              <td class="tt-desc">Framework testing PHP — konfigurasi format baru PHPUnit 10 (<code>&lt;source&gt;&lt;include&gt;</code>)</td>
+              <td class="tt-desc">Framework testing PHP — konfigurasi format baru PHPUnit 10
+                (<code>&lt;source&gt;&lt;include&gt;</code>)</td>
             </tr>
             <tr>
-              <td><div class="tt-name"><i class="fa-brands fa-github"></i> Git / GitHub</div></td>
+              <td>
+                <div class="tt-name"><i class="fa-brands fa-github"></i> Git / GitHub</div>
+              </td>
               <td><span class="tt-ver">—</span></td>
-              <td class="tt-desc">Version control &amp; hosting repositori. Deploy static showcase via Netlify dari branch main</td>
+              <td class="tt-desc">Version control &amp; hosting repositori. Deploy static showcase via Netlify dari
+                branch main</td>
             </tr>
           </tbody>
         </table>
 
         <div class="callout callout-tip">
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          <p><strong>Upgrade path L6 → L10:</strong> anonymous class migrations · FQCN routes · <code>$middlewareAliases</code> menggantikan <code>$routeMiddleware</code> · <code>spatie/laravel-ignition</code> menggantikan <code>facade/ignition</code> · <code>Throwable</code> interface di <code>Handler.php</code></p>
+          <p><strong>Upgrade path L6 → L10:</strong> anonymous class migrations · FQCN routes ·
+            <code>$middlewareAliases</code> menggantikan <code>$routeMiddleware</code> ·
+            <code>spatie/laravel-ignition</code> menggantikan <code>facade/ignition</code> · <code>Throwable</code>
+            interface di <code>Handler.php</code></p>
         </div>
       </section>
 
@@ -776,40 +1356,56 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
 
         <div class="info-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
           <div class="info-card" style="text-align:center">
-            <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">K</div>
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">
+              K</div>
             <div class="ic-label">Anggota</div>
             <div class="ic-val" style="font-size:.9rem">Kamilia</div>
-            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Istiqomah itu berat, yang ringan mah istirahat"</p>
+            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Istiqomah itu
+              berat, yang ringan mah istirahat"</p>
           </div>
           <div class="info-card" style="text-align:center">
-            <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#059669,#0d9488);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">H</div>
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#059669,#0d9488);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">
+              H</div>
             <div class="ic-label">Anggota</div>
             <div class="ic-val" style="font-size:.9rem">Hanafi Muammar</div>
-            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Jika memulai karena Allah, maka jangan menyerah karena manusia"</p>
+            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Jika memulai
+              karena Allah, maka jangan menyerah karena manusia"</p>
           </div>
           <div class="info-card" style="text-align:center">
-            <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#d97706,#dc2626);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">A</div>
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#d97706,#dc2626);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">
+              A</div>
             <div class="ic-label">Anggota</div>
             <div class="ic-val" style="font-size:.9rem">Alaric Rasendriya</div>
-            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Sukses bukan dia yang tidak pernah gagal, tetapi dia yang menggagalkan kegagalan"</p>
+            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Sukses bukan dia
+              yang tidak pernah gagal, tetapi dia yang menggagalkan kegagalan"</p>
           </div>
           <div class="info-card" style="text-align:center">
-            <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">I</div>
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">
+              I</div>
             <div class="ic-label">Anggota</div>
             <div class="ic-val" style="font-size:.9rem">Irfan Arifin</div>
-            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Di saat kita mau berusaha, di situlah kebahagiaan akan indah pada waktunya"</p>
+            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Di saat kita mau
+              berusaha, di situlah kebahagiaan akan indah pada waktunya"</p>
           </div>
           <div class="info-card" style="text-align:center">
-            <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0d9488,#059669);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">R</div>
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0d9488,#059669);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700;margin:0 auto 10px">
+              R</div>
             <div class="ic-label">Anggota</div>
             <div class="ic-val" style="font-size:.9rem">Raafi Asta</div>
-            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Ingat kata tukang parkir, stangnya jangan dikunci"</p>
+            <p style="font-size:.72rem;color:#64748b;margin-top:6px;font-style:italic;line-height:1.4">"Ingat kata
+              tukang parkir, stangnya jangan dikunci"</p>
           </div>
         </div>
 
         <div class="callout callout-tip" style="margin-top:24px">
           <i class="fa-solid fa-envelope"></i>
-          <p>Pertanyaan tentang proyek ini? Email: <strong>alaric2001ra@gmail.com</strong> &nbsp;|&nbsp; GitHub: <strong>github.com/alaric2001</strong></p>
+          <p>Pertanyaan tentang proyek ini? Email: <strong>alaric2001ra@gmail.com</strong> &nbsp;|&nbsp; GitHub:
+            <strong>github.com/alaric2001</strong></p>
         </div>
       </section>
 
@@ -818,4 +1414,5 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
 
   <script src="assets/js/docs.js"></script>
 </body>
+
 </html>
