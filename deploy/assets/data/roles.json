@@ -1,0 +1,32 @@
+[
+  {
+    "key": "admin",
+    "icon": "fa-user-shield",
+    "title": "Admin",
+    "subtitle": "Pengelola platform",
+    "color": "blue",
+    "permissions": [
+      "Kelola & moderasi semua laporan",
+      "Publikasi & edit berita infrastruktur",
+      "Kelola data tim (Our Team)",
+      "Approve pengajuan reporter baru",
+      "Promosi pengguna menjadi admin",
+      "Hapus akun pengguna"
+    ]
+  },
+  {
+    "key": "reporter",
+    "icon": "fa-pen-to-square",
+    "title": "Reporter",
+    "subtitle": "Pelapor infrastruktur",
+    "color": "amber",
+    "permissions": [
+      "Buat & kelola laporan pribadi",
+      "Upload foto bukti kerusakan",
+      "Vote laporan milik pengguna lain",
+      "Tulis & edit komentar laporan",
+      "Kelola profil & foto diri",
+      "Pantau laporan berdasarkan provinsi"
+    ]
+  }
+]

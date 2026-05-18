@@ -1,0 +1,32 @@
+[
+  {
+    "initial": "K",
+    "name": "Kamilia",
+    "quote": "Istiqomah itu berat, yang ringan mah istirahat",
+    "gradient": "135deg, #2563eb, #7c3aed"
+  },
+  {
+    "initial": "H",
+    "name": "Hanafi Muammar",
+    "quote": "Jika memulai karena Allah, maka jangan menyerah karena manusia",
+    "gradient": "135deg, #059669, #0d9488"
+  },
+  {
+    "initial": "A",
+    "name": "Alaric Rasendriya",
+    "quote": "Sukses bukan dia yang tidak pernah gagal, tetapi dia yang menggagalkan kegagalan",
+    "gradient": "135deg, #d97706, #dc2626"
+  },
+  {
+    "initial": "I",
+    "name": "Irfan Arifin",
+    "quote": "Di saat kita mau berusaha, di situlah kebahagiaan akan indah pada waktunya",
+    "gradient": "135deg, #7c3aed, #2563eb"
+  },
+  {
+    "initial": "R",
+    "name": "Raafi Asta",
+    "quote": "Ingat kata tukang parkir, stangnya jangan dikunci",
+    "gradient": "135deg, #0d9488, #059669"
+  }
+]

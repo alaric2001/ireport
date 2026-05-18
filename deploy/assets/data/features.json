@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "fa-file-circle-plus",
+    "color": "blue",
+    "title": "Kirim Laporan dengan Foto",
+    "desc": "Upload foto kondisi kerusakan beserta lokasi dan keterangan lengkap untuk memperkuat laporan."
+  },
+  {
+    "icon": "fa-arrow-up-wide-short",
+    "color": "amber",
+    "title": "Sistem Voting",
+    "desc": "Upvote atau downvote laporan untuk menentukan prioritas penanganan berdasarkan kepentingan warga."
+  },
+  {
+    "icon": "fa-newspaper",
+    "color": "green",
+    "title": "Berita Infrastruktur",
+    "desc": "Admin dapat menerbitkan berita terkini seputar pembangunan dan perbaikan infrastruktur."
+  },
+  {
+    "icon": "fa-comments",
+    "color": "purple",
+    "title": "Komentar Laporan",
+    "desc": "Warga bisa berkomentar pada setiap laporan untuk menambahkan informasi atau dukungan."
+  },
+  {
+    "icon": "fa-map-location-dot",
+    "color": "red",
+    "title": "Filter per Provinsi",
+    "desc": "Saring laporan berdasarkan provinsi untuk memantau kondisi infrastruktur di daerah tertentu."
+  },
+  {
+    "icon": "fa-shield-halved",
+    "color": "teal",
+    "title": "Panel Admin",
+    "desc": "Dashboard khusus admin untuk mengelola laporan, berita, pengguna, dan pengajuan reporter."
+  }
+]

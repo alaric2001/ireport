@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IReport — Laporkan, Pantau, Perbaiki</title>
+  <meta name="description" content="Platform digital untuk melaporkan kerusakan infrastruktur seperti jalan berlubang, lampu mati, dan trotoar rusak." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      IReport<span class="dot">.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
+      <li><a href="#pengguna">Pengguna</a></li>
+      <li><a href="#tim">Tim</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="docs.html" class="btn-docs">
+        <i class="fa-solid fa-book"></i> Docs
+      </a>
+      <a href="https://github.com/alaric2001" target="_blank" class="nav-gh" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <i class="fa-solid fa-circle-dot"></i>
+          Platform Pelaporan Infrastruktur
+        </div>
+        <h1>Laporkan Masalah<br><span>Infrastruktur</span><br>di Sekitarmu</h1>
+        <p>IReport adalah platform digital untuk melaporkan kerusakan infrastruktur seperti jalan berlubang, lampu mati, dan trotoar rusak — agar segera ditindaklanjuti.</p>
+        <div class="hero-btns">
+          <a href="https://github.com/alaric2001" target="_blank" class="btn-primary">
+            <i class="fa-brands fa-github"></i> Lihat di GitHub
+          </a>
+          <a href="docs.html" class="btn-outline">
+            <i class="fa-solid fa-book"></i> Dokumentasi
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots"><span></span><span></span><span></span></div>
+            <span class="mockup-title">IReport — Daftar Laporan</span>
+          </div>
+          <div class="report-item">
+            <div class="report-icon ri-blue"><i class="fa-solid fa-road"></i></div>
+            <div class="report-info">
+              <h4>Jalan Berlubang — Mojokerto</h4>
+              <p>JAWA TIMUR · 19 Mar 2022</p>
+              <div class="report-meta">
+                <span class="badge-status badge-proc">Diproses</span>
+                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 2</span>
+              </div>
+            </div>
+          </div>
+          <div class="report-item">
+            <div class="report-icon ri-yellow"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="report-info">
+              <h4>Lampu Jalan Mati — Pusat Kota</h4>
+              <p>JAWA TIMUR · 5 Apr 2022</p>
+              <div class="report-meta">
+                <span class="badge-status badge-new">Baru</span>
+                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 1</span>
+              </div>
+            </div>
+          </div>
+          <div class="report-item">
+            <div class="report-icon ri-green"><i class="fa-solid fa-person-walking"></i></div>
+            <div class="report-info">
+              <h4>Trotoar Rusak — Bogor Kota</h4>
+              <p>JAWA BARAT · 2 Mei 2022</p>
+              <div class="report-meta">
+                <span class="badge-status badge-done">Selesai</span>
+                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS (rendered by app.js) -->
+  <div class="stats">
+    <div class="stats-inner" id="stats-container"></div>
+  </div>
+
+  <!-- FEATURES (rendered by app.js) -->
+  <section class="features" id="fitur">
+    <div style="max-width:1100px;margin:0 auto">
+      <div class="center">
+        <span class="section-tag"><i class="fa-solid fa-star"></i> Fitur Unggulan</span>
+        <h2 class="section-title">Semua yang Kamu Butuhkan</h2>
+        <p class="section-sub">Platform lengkap untuk melaporkan, memantau, dan mengelola kerusakan infrastruktur di berbagai wilayah.</p>
+      </div>
+      <div class="features-grid" id="features-container"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (static) -->
+  <section class="how" id="cara-kerja">
+    <div style="max-width:900px;margin:0 auto">
+      <div class="center">
+        <span class="section-tag"><i class="fa-solid fa-route"></i> Cara Kerja</span>
+        <h2 class="section-title">Mudah dalam 3 Langkah</h2>
+        <p class="section-sub">Dari menemukan masalah hingga laporan terkirim, prosesnya cepat dan mudah.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Daftar &amp; Ajukan</h3>
+          <p>Buat akun, lalu ajukan diri sebagai Reporter untuk mendapatkan hak akses membuat laporan.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Buat Laporan</h3>
+          <p>Isi detail kerusakan lengkap dengan foto, lokasi, dan kategori infrastruktur yang rusak.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Pantau &amp; Dukung</h3>
+          <p>Laporan tampil publik, warga bisa vote dan berkomentar untuk memperkuat urgensi penanganan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES (rendered by app.js) -->
+  <section class="roles" id="pengguna">
+    <div style="max-width:900px;margin:0 auto">
+      <div class="center">
+        <span class="section-tag"><i class="fa-solid fa-users"></i> Jenis Pengguna</span>
+        <h2 class="section-title">Hak Akses yang Terstruktur</h2>
+        <p class="section-sub">Setiap pengguna memiliki peran dan akses yang berbeda sesuai fungsinya.</p>
+      </div>
+      <div class="roles-grid" id="roles-container"></div>
+    </div>
+  </section>
+
+  <!-- TECH STACK (rendered by app.js) -->
+  <section class="tech">
+    <div style="max-width:800px;margin:0 auto;text-align:center">
+      <span class="section-tag"><i class="fa-solid fa-code"></i> Tech Stack</span>
+      <h2 class="section-title">Dibangun dengan Teknologi Modern</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto">Stack yang digunakan dalam pengembangan IReport.</p>
+      <div class="tech-grid" id="tech-container"></div>
+    </div>
+  </section>
+
+  <!-- TEAM (rendered by app.js) -->
+  <section class="team" id="tim">
+    <div style="max-width:1000px;margin:0 auto">
+      <div class="center">
+        <span class="section-tag"><i class="fa-solid fa-people-group"></i> Tim Kami</span>
+        <h2 class="section-title">Dibuat oleh Tim Hebat</h2>
+        <p class="section-sub">Para pengembang di balik platform IReport.</p>
+      </div>
+      <div class="team-grid" id="team-container"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Tertarik dengan Project Ini?</h2>
+    <p>Lihat source code lengkap, struktur database, dan dokumentasi teknis sistem.</p>
+    <div class="cta-btns">
+      <a href="https://github.com/alaric2001" target="_blank" class="btn-white">
+        <i class="fa-brands fa-github"></i> Lihat Source Code
+      </a>
+      <a href="docs.html" class="btn-ghost">
+        <i class="fa-solid fa-book"></i> Baca Dokumentasi
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">IReport<span>.</span></div>
+    <p>Platform pelaporan infrastruktur berbasis web &middot; Proyek portofolio</p>
+    <ul class="footer-links">
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
+      <li><a href="#tim">Tim</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="https://github.com/alaric2001" target="_blank">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

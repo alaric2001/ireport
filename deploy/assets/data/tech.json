@@ -1,0 +1,8 @@
+[
+  { "icon": "fa-brands fa-laravel",    "color": "#f05340", "name": "Laravel 10",   "version": "10.50.2" },
+  { "icon": "fa-brands fa-php",        "color": "#777bb3", "name": "PHP 8.2",      "version": "8.2.4"   },
+  { "icon": "fa-solid fa-database",    "color": "#4479a1", "name": "MySQL",         "version": "10.4 MariaDB" },
+  { "icon": "fa-brands fa-bootstrap",  "color": "#7952b3", "name": "Bootstrap",    "version": "4.0.0"   },
+  { "icon": "fa-brands fa-js",         "color": "#f7df1e", "name": "JavaScript",   "version": "ES6+"     },
+  { "icon": "fa-brands fa-github",     "color": "#333",    "name": "GitHub",        "version": "Git"      }
+]
