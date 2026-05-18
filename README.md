@@ -291,7 +291,7 @@ deploy/
   publish = "."
 ```
 
----
+--- 
 
 ## 👥 Tim Pengembang
 
