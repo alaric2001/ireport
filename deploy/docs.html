@@ -357,7 +357,7 @@
           <div class="hero-tags">
             <span class="hero-tag"><i class="fa-brands fa-laravel"></i> Laravel 10.50.2</span>
             <span class="hero-tag"><i class="fa-brands fa-php"></i> PHP 8.2.4</span>
-            <span class="hero-tag"><i class="fa-solid fa-database"></i> MariaDB 10.4</span>
+            <span class="hero-tag"><i class="fa-solid fa-database"></i> MySql</span>
             <span class="hero-tag"><i class="fa-solid fa-user-lock"></i> RBAC 3-Level</span>
             <span class="hero-tag"><i class="fa-solid fa-code-branch"></i> MVC Pattern</span>
             <span class="hero-tag"><i class="fa-solid fa-vial"></i> PHPUnit 10</span>
@@ -410,7 +410,8 @@
           <p><strong>Upgrade Path:</strong> Proyek ini di-upgrade dari Laravel 6 ke Laravel 10 — mencakup
             migrasi ke anonymous class migrations, FQCN routes, penggantian <code>fideloper/proxy</code>
             ke built-in <code>TrustProxies</code>, dan refactor <code>Handler.php</code> ke interface
-            <code>Throwable</code>.</p>
+            <code>Throwable</code>.
+          </p>
         </div>
       </section>
 
@@ -532,7 +533,8 @@
           <p>Mockup di atas adalah representasi visual berdasarkan struktur data asli di database. Kolom
             <code>status</code> pada tabel <code>laporan</code> memiliki nilai: <strong>Baru</strong>,
             <strong>Diproses</strong>, <strong>Selesai</strong>. Profil terhubung ke <code>users</code> via relasi
-            1-to-1 di tabel <code>profile</code>.</p>
+            1-to-1 di tabel <code>profile</code>.
+          </p>
         </div>
       </section>
 
@@ -567,7 +569,8 @@
           <i class="fa-solid fa-circle-check"></i>
           <p>Semua akun seed menggunakan password <strong>123</strong> (bcrypt). Di Windows, tambahkan folder project ke
             exclusion Windows Defender jika <code>composer install</code> gagal dengan error
-            <code>file_put_contents</code>.</p>
+            <code>file_put_contents</code>.
+          </p>
         </div>
       </section>
 
@@ -617,7 +620,8 @@
 
         <h3 class="doc-h3">1. Model di <code>app/</code> — bukan <code>app/Models/</code></h3>
         <p class="doc-p">Proyek ini mewarisi struktur Laravel 6 di mana semua Model berada langsung di folder
-          <code>app/</code>. Namespace tetap <code>App\ModelName</code>.</p>
+          <code>app/</code>. Namespace tetap <code>App\ModelName</code>.
+        </p>
         <div class="code-block">
           <span class="code-tag">app/Laporan.php</span>
           <pre><span class="c-key">namespace</span> <span class="c-str">App</span>;   <span class="c-comment">// BUKAN App\Models</span>
@@ -684,7 +688,8 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
           <i class="fa-solid fa-triangle-exclamation"></i>
           <p><strong>Penting:</strong> <code>FoundationServiceProvider</code> harus tetap ada di
             <code>config/app.php</code> providers. Jika dihapus, akan muncul error
-            <code>Target [MaintenanceMode] is not instantiable</code> karena binding kontrak tidak terdaftar.</p>
+            <code>Target [MaintenanceMode] is not instantiable</code> karena binding kontrak tidak terdaftar.
+          </p>
         </div>
       </section>
 
@@ -1227,7 +1232,8 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
             <div>
               <h4>RBAC via CheckRole Middleware</h4>
               <p>Middleware <code>CheckRole</code> membaca kolom <code>role</code> (int 0/1/2) dari tabel
-                <code>users</code> dan memblokir akses ke route yang memerlukan level lebih tinggi.</p>
+                <code>users</code> dan memblokir akses ke route yang memerlukan level lebih tinggi.
+              </p>
             </div>
           </div>
           <div class="sec-card">
@@ -1342,7 +1348,8 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
           <p><strong>Upgrade path L6 → L10:</strong> anonymous class migrations · FQCN routes ·
             <code>$middlewareAliases</code> menggantikan <code>$routeMiddleware</code> ·
             <code>spatie/laravel-ignition</code> menggantikan <code>facade/ignition</code> · <code>Throwable</code>
-            interface di <code>Handler.php</code></p>
+            interface di <code>Handler.php</code>
+          </p>
         </div>
       </section>
 
@@ -1405,7 +1412,8 @@ Route::get(<span class="c-str">'/laporan'</span>, <span class="c-str">'LaporanCo
         <div class="callout callout-tip" style="margin-top:24px">
           <i class="fa-solid fa-envelope"></i>
           <p>Pertanyaan tentang proyek ini? Email: <strong>alaric2001ra@gmail.com</strong> &nbsp;|&nbsp; GitHub:
-            <strong>github.com/alaric2001</strong></p>
+            <strong>github.com/alaric2001</strong>
+          </p>
         </div>
       </section>
 
