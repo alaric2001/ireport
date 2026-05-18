@@ -4,7 +4,10 @@
       "Bash(php artisan *)",
       "Bash(php -v)",
       "Bash(composer dump-autoload *)",
-      "Bash(Test-Path \"c:\\\\Users\\\\testl\\\\Documents\\\\Work\\\\info loker\\\\Portofolio\\\\ireport\\\\IREPORT\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Providers\\\\FoundationServiceProvider.php\")"
+      "Bash(Test-Path \"c:\\\\Users\\\\testl\\\\Documents\\\\Work\\\\info loker\\\\Portofolio\\\\ireport\\\\IREPORT\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Providers\\\\FoundationServiceProvider.php\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
