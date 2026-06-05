@@ -73,6 +73,31 @@
                     </form>
                 </div>
             </div>
+
+            {{-- Demo credentials untuk recruiter --}}
+            <div class="card mt-3" style="border:1px solid #d1e7dd;background:#f0fdf4">
+                <div class="card-body py-3">
+                    <p class="mb-2 text-center" style="font-size:.8rem;color:#6c757d;font-weight:600;letter-spacing:.05em">
+                        <i class="fas fa-key" style="color:#198754"></i>&nbsp; AKUN DEMO
+                    </p>
+                    <div class="d-flex justify-content-center" style="gap:.5rem;flex-wrap:wrap">
+                        <button type="button"
+                            onclick="document.getElementById('email').value='bro@mail.com';document.getElementById('password').value='123';"
+                            class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-user"></i>&nbsp;User &mdash; bro@mail.com
+                        </button>
+                        <button type="button"
+                            onclick="document.getElementById('email').value='tes@mail.com';document.getElementById('password').value='123';"
+                            class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-user-edit"></i>&nbsp;Reporter &mdash; tes@mail.com
+                        </button>
+                    </div>
+                    <p class="mb-0 text-center mt-2" style="font-size:.75rem;color:#6c757d">
+                        Password semua akun: <code>123</code>
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

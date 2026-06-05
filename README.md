@@ -173,9 +173,9 @@ Akses di: **http://localhost:8000**
 
 | Email | Role | Akses |
 |-------|------|-------|
-| `admin@example.com` | Admin | Panel admin penuh |
-| `reporter@example.com` | Reporter | Buat laporan, vote, komentar |
-| `user@example.com` | Guest | Lihat saja |
+| `w@mail.com` | Admin | Panel admin penuh |
+| `tes@mail.com` | Reporter | Buat laporan, vote, komentar |
+| `bro@mail.com` | User | Lihat laporan & berita |
 
 ---
 
@@ -284,11 +284,11 @@ deploy/
     └── data/    ← features, stats, team, tech, roles (JSON)
 ```
 
-**Deploy ke Netlify:** Set *publish directory* ke `deploy/` atau gunakan:
+**Deploy ke Netlify:** Sudah dikonfigurasi via `netlify.toml` di root repo:
 ```toml
-# netlify.toml (sudah tersedia)
+# netlify.toml (root repository)
 [build]
-  publish = "."
+  publish = "deploy"
 ```
 
 --- 
