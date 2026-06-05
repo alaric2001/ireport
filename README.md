@@ -55,9 +55,9 @@ Browser → Router (routes/web.php) → Middleware (Auth, CSRF, CheckRole)
 ### Sistem Role
 
 ```
-role = 0  →  Guest    : Lihat laporan & berita, registrasi
+role = 0  →  User     : Lihat laporan & berita, registrasi
 role = 1  →  Reporter : Buat laporan, upload foto, vote, komentar, profil
-role = 2  →  Admin    : Semua akses + moderasi, kelola user, berita
+role = 2  →  Admin    : Semua akses + moderasi, kelola user, kelola berita
 ```
 
 Pengajuan menjadi Reporter harus di-**approve** oleh Admin terlebih dahulu.
@@ -272,17 +272,20 @@ Proyek ini mengalami upgrade major dari Laravel 6 ke Laravel 10. Perubahan utama
 
 ## 🌐 Static Showcase (Netlify)
 
-Folder [`/deploy`](./deploy) berisi landing page statis yang dapat di-deploy ke **Netlify** sebagai showcase portfolio tanpa server PHP:
+Folder [`/deploy`](./deploy) adalah versi statis yang di-deploy ke **Netlify** sebagai demo tanpa server PHP. Tampilannya meniru UI asli aplikasi IReport — lengkap dengan navbar, search bar, dan grid kartu laporan.
 
 ```
 deploy/
-├── index.html   ← Landing page (data dari JSON via fetch)
-├── docs.html    ← Dokumentasi teknis lengkap
+├── index.html        ← Demo UI halaman laporan (data inline di app.js)
+├── docs.html         ← Dokumentasi teknis untuk recruiter
+├── favicon.ico / .svg / .png
 └── assets/
-    ├── css/     ← style.css, docs.css
-    ├── js/      ← app.js (render JSON), docs.js (scroll-spy)
-    └── data/    ← features, stats, team, tech, roles (JSON)
+    ├── css/          ← style.css (user pages), docs.css
+    ├── js/           ← app.js (render kartu laporan), docs.js (scroll-spy)
+    └── data/         ← laporan.json + data dokumentasi lainnya
 ```
+
+> **Catatan:** Data laporan di-embed langsung di `app.js` (bukan via `fetch`) agar berfungsi saat dibuka lokal via `file://` maupun setelah deploy ke Netlify.
 
 **Deploy ke Netlify:** Sudah dikonfigurasi via `netlify.toml` di root repo:
 ```toml

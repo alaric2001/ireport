@@ -1,75 +1,102 @@
 @extends('layouts.master')
 @section('konten')
 
-<div class="row">
-    <div class="col">
-        <form class="form-inline" method="GET" action="/laporan" style="padding-bottom: 16px">
-            <input value="{{ request('search') }}" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >Search</button>
-        </form>
-    </div>
-    <div class="col">
-        <div class="dropdown" style="padding-left: 600px">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                @foreach ($data as $item)
-                    <li><a class="dropdown-item" href="/laporan_/{{ $item['name'] }}">{{ $item['name'] }}</a></li>
-                @endforeach
-            </ul>
-          </div>    
-    </div>
+{{-- Search + Filter Bar --}}
+<div class="search-bar-wrapper">
+  <form class="d-flex flex-grow-1 gap-2" method="GET" action="/laporan" style="flex:1 1 auto">
+    <input value="{{ request('search') }}" name="search"
+      class="form-control" type="search"
+      placeholder="Cari laporan...">
+    <button class="btn btn-primary btn-sm px-3" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+
+  <div class="dropdown">
+    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+      id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fas fa-filter me-1"></i> Filter Provinsi
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown"
+        style="max-height:280px;overflow-y:auto">
+      @foreach ($data as $item)
+        <li>
+          <a class="dropdown-item {{ request()->is('laporan_/'.$item['name']) ? 'active' : '' }}"
+            href="/laporan_/{{ $item['name'] }}">
+            {{ $item['name'] }}
+          </a>
+        </li>
+      @endforeach
+    </ul>
+  </div>
 </div>
 
-
-@if (request('search')==true)
-    <div>
-        <a href="/laporan">
-            <button class="btn btn-light my-2 my-sm-0" style="border-radius: 20px">
-                {{ request('search') }} <i class="fa fa-times-circle-o"></i>
-            </button>
-        </a>
-    </div>
-    
-@else
-    
+{{-- Active search tag --}}
+@if (request('search'))
+<div>
+  <a href="/laporan" class="search-tag">
+    <i class="fas fa-times-circle"></i>
+    {{ request('search') }}
+  </a>
+</div>
 @endif
 
+{{-- Laporan Grid --}}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3" style="padding-bottom:100px">
+  @forelse ($tampil as $laporan)
+    <div class="col">
+      <div class="card-laporan">
+        <img class="lap-img" src="{{ asset('image/'.$laporan->foto) }}" alt="{{ $laporan->kategori }}">
+        <div class="card-body">
+          <div class="lap-kategori">{{ $laporan->kategori }}</div>
 
-<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="padding-bottom: 130px; padding-top: 40px">    
-    @forelse ($tampil as $data)
-        <div class="col mb-5">
-            <div class="card">
-                <img class="card-img-top" src="{{ asset('image/'.$data->foto)}}" alt="..." />
-                <div class="card-body">
-                        <h4 class="fw-bolder">{{ ' '.$data->kategori }}</h4>
-                        <i class="fa fa-map-marker" style=""></i>{{ Str::limit(' '.$data->provinsi.', '.$data->alamat, 24) }} <br>
-                        <i class="fa fa-book"></i> {{ Str::limit( ' '.$data->keterangan, 18) }} <br>
-                        <i class="fa fa-clock"></i> {{ ' '.$data->tanggal }}
-                        <br>
-                        {{-- <i class="fa fa-sort-up"> </i> --}}
-                        <a class="btn btn-primary btn-sm" href="/laporanupvote/{{$data->id}}"> <i class="fa fa-toggle-up"></i> </a>
-                        <a class="btn btn-secondary btn-sm" href="/laporandownvote/{{$data->id}}"> <i class="fa fa-toggle-down"></i> </a> {{$data->vote}}
+          <div class="lap-meta">
+            <i class="fas fa-map-marker-alt"></i>
+            {{ Str::limit($laporan->provinsi.', '.$laporan->alamat, 28) }}
+          </div>
+          <div class="lap-meta">
+            <i class="far fa-clock"></i>
+            {{ $laporan->tanggal }}
+          </div>
 
-                        
-                    <form action="/laporan/{{$data->id}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <br>
-                        <a href="/laporan/{{ $data->id }}" class="btn btn-info" style="padding-left: 90px; padding-right: 90px">Detail</a>
-                        {{-- <a href="/laporan/{{ $data->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <input type="submit" class="btn btn-danger btn-sm" value="Delete"></input> --}}
-                    </form>
-                </div>
-                {{-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                </div> --}}
+          <div class="lap-footer">
+            @php
+              $status = strtolower($laporan->status ?? 'baru');
+              $badgeClass = match(true) {
+                str_contains($status, 'selesai') => 'badge-selesai',
+                str_contains($status, 'proses')  => 'badge-proses',
+                str_contains($status, 'tolak')   => 'badge-ditolak',
+                default => 'badge-baru',
+              };
+            @endphp
+            <span class="badge-status {{ $badgeClass }}">{{ $laporan->status ?? 'Baru' }}</span>
+
+            <div class="vote-chip">
+              <a href="/laporanupvote/{{ $laporan->id }}" title="Upvote">
+                <i class="fas fa-caret-up"></i>
+              </a>
+              <span class="vote-num">{{ $laporan->vote }}</span>
+              <a href="/laporandownvote/{{ $laporan->id }}" title="Downvote">
+                <i class="fas fa-caret-down"></i>
+              </a>
             </div>
-            
+          </div>
+
+          <a href="/laporan/{{ $laporan->id }}" class="btn btn-primary btn-sm w-100 mt-2"
+            style="border-radius:7px;font-size:.78rem;font-family:'Poppins',sans-serif">
+            Lihat Detail
+          </a>
         </div>
-    @empty
-        
-    @endforelse
-    {{-- {{ $tampil->links() }} --}}
+      </div>
+    </div>
+  @empty
+    <div class="col-12">
+      <div class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <p>Belum ada laporan ditemukan.</p>
+      </div>
+    </div>
+  @endforelse
 </div>
+
 @endsection

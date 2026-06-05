@@ -3,210 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IReport — Fullstack Laravel Portfolio</title>
-  <meta name="description" content="IReport: sistem pelaporan infrastruktur publik berbasis Laravel 10 & PHP 8.2. Menerapkan RBAC, Eloquent ORM, Blade templating, dan migrasi database penuh." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>IReport — Platform Pelaporan Infrastruktur Publik</title>
+  <meta name="description" content="IReport: sistem pelaporan infrastruktur publik berbasis Laravel 10 & PHP 8.2." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav>
-    <a href="#" class="nav-brand">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      IReport<span class="dot">.</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#arsitektur">Arsitektur</a></li>
-      <li><a href="#fitur">Fitur</a></li>
-      <li><a href="#akses">Hak Akses</a></li>
-      <li><a href="#tim">Tim</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="docs.html" class="btn-docs">
-        <i class="fa-solid fa-book"></i> Dokumentasi Teknis
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <i class="fa-solid fa-triangle-exclamation nav-logo-icon"></i>
+        <span class="nav-brand-name">IReport</span>
       </a>
-      <a href="https://github.com/alaric2001" target="_blank" class="nav-gh" title="GitHub">
-        <i class="fa-brands fa-github"></i>
-      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link active">HOME</a></li>
+          <li><a href="#" class="nav-link">BERITA</a></li>
+          <li><a href="#" class="nav-link">TIM</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="docs.html" class="btn-docs">
+            <i class="fa-solid fa-book"></i> Dokumentasi
+          </a>
+          <a href="https://github.com/alaric2001" target="_blank" class="btn-github" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-tag">
-          <i class="fa-solid fa-code-branch"></i>
-          Fullstack Portfolio &nbsp;·&nbsp; Laravel 10 &nbsp;·&nbsp; PHP 8.2
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <div class="content-wrapper">
+
+      <!-- DEMO NOTICE -->
+      <div class="demo-notice">
+        <i class="fa-solid fa-circle-info"></i>
+        Ini adalah tampilan demo statis IReport. Data laporan menggunakan contoh dari JSON.
+        <a href="docs.html">Lihat dokumentasi teknis →</a>
+      </div>
+
+      <!-- SEARCH + FILTER BAR -->
+      <div class="search-bar">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-search search-icon"></i>
+          <input class="search-input" type="search" placeholder="Cari laporan..." disabled />
         </div>
-        <h1>IReport —<br><span>Sistem Pelaporan</span><br>Infrastruktur Publik</h1>
-        <p>Aplikasi web fullstack berbasis <strong>Laravel 10</strong> untuk warga melaporkan kerusakan infrastruktur. Menerapkan <strong>RBAC 3-level</strong>, Eloquent ORM, Blade templating, dan 9 database migrations.</p>
-        <div class="hero-btns">
-          <a href="docs.html" class="btn-primary">
-            <i class="fa-solid fa-book"></i> Dokumentasi Teknis
+        <div class="filter-wrap">
+          <button class="btn-filter" disabled>
+            <i class="fa-solid fa-filter"></i> Filter Provinsi
+            <i class="fa-solid fa-chevron-down" style="font-size:.7rem;margin-left:2px"></i>
+          </button>
+          <a href="#" class="btn-new-report">
+            <i class="fa-solid fa-plus"></i> Laporan Baru
           </a>
-          <a href="https://github.com/alaric2001" target="_blank" class="btn-outline">
-            <i class="fa-brands fa-github"></i> Source Code
-          </a>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="mockup-card">
-          <div class="mockup-header">
-            <div class="mockup-dots"><span></span><span></span><span></span></div>
-            <span class="mockup-title">IReport — Daftar Laporan</span>
-          </div>
-          <div class="report-item">
-            <div class="report-icon ri-blue"><i class="fa-solid fa-road"></i></div>
-            <div class="report-info">
-              <h4>Jalan Berlubang — Mojokerto</h4>
-              <p>JAWA TIMUR · 19 Mar 2022</p>
-              <div class="report-meta">
-                <span class="badge-status badge-proc">Diproses</span>
-                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 2</span>
-              </div>
-            </div>
-          </div>
-          <div class="report-item">
-            <div class="report-icon ri-yellow"><i class="fa-solid fa-lightbulb"></i></div>
-            <div class="report-info">
-              <h4>Lampu Jalan Mati — Pusat Kota</h4>
-              <p>JAWA TIMUR · 5 Apr 2022</p>
-              <div class="report-meta">
-                <span class="badge-status badge-new">Baru</span>
-                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 1</span>
-              </div>
-            </div>
-          </div>
-          <div class="report-item">
-            <div class="report-icon ri-green"><i class="fa-solid fa-person-walking"></i></div>
-            <div class="report-info">
-              <h4>Trotoar Rusak — Bogor Kota</h4>
-              <p>JAWA BARAT · 2 Mei 2022</p>
-              <div class="report-meta">
-                <span class="badge-status badge-done">Selesai</span>
-                <span class="vote-count"><i class="fa-solid fa-arrow-up"></i> 3</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <!-- LAPORAN COUNT -->
+      <div id="laporan-count" class="laporan-count"></div>
 
-  <!-- STATS TEKNIS (rendered by app.js) -->
-  <div class="stats">
-    <div class="stats-inner" id="stats-container"></div>
-  </div>
+      <!-- LAPORAN GRID -->
+      <div class="laporan-grid" id="laporan-container"></div>
 
-  <!-- ARSITEKTUR (static) -->
-  <section class="how" id="arsitektur">
-    <div style="max-width:900px;margin:0 auto">
-      <div class="center">
-        <span class="section-tag"><i class="fa-solid fa-diagram-project"></i> Arsitektur</span>
-        <h2 class="section-title">Pola MVC Laravel</h2>
-        <p class="section-sub">Setiap request melewati Router → Middleware → Controller → Model → View sebelum kembali ke browser.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num"><i class="fa-solid fa-globe" style="font-size:1rem"></i></div>
-          <h3>Router &amp; Middleware</h3>
-          <p><code style="font-size:.78rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">routes/web.php</code> dengan FQCN controllers. Middleware Auth, CSRF, dan <code style="font-size:.78rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">CheckRole</code> menjaga akses.</p>
-        </div>
-        <div class="step">
-          <div class="step-num"><i class="fa-solid fa-gear" style="font-size:1rem"></i></div>
-          <h3>Controller &amp; Model</h3>
-          <p>Controller menangani business logic, Model Eloquent ORM memetakan 6 tabel database. Model berada di <code style="font-size:.78rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">app/</code> langsung.</p>
-        </div>
-        <div class="step">
-          <div class="step-num"><i class="fa-solid fa-file-code" style="font-size:1rem"></i></div>
-          <h3>Blade View</h3>
-          <p>Template Blade dengan layout <code style="font-size:.78rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">@extends</code> dan <code style="font-size:.78rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">@section</code>. Bootstrap 4 untuk UI, JavaScript ES6+ untuk interaksi.</p>
-        </div>
-      </div>
     </div>
-  </section>
-
-  <!-- FEATURES (rendered by app.js) -->
-  <section class="features" id="fitur">
-    <div style="max-width:1100px;margin:0 auto">
-      <div class="center">
-        <span class="section-tag"><i class="fa-solid fa-star"></i> Fitur Sistem</span>
-        <h2 class="section-title">6 Fitur Utama</h2>
-        <p class="section-sub">Setiap fitur terhubung langsung ke tabel database yang sesuai. Badge monospace menunjukkan nama tabel/kolom di schema.</p>
-      </div>
-      <div class="features-grid" id="features-container"></div>
-    </div>
-  </section>
-
-  <!-- ROLES (rendered by app.js) -->
-  <section class="roles" id="akses">
-    <div style="max-width:1100px;margin:0 auto">
-      <div class="center">
-        <span class="section-tag"><i class="fa-solid fa-user-lock"></i> RBAC System</span>
-        <h2 class="section-title">3 Level Hak Akses</h2>
-        <p class="section-sub">Kolom <code style="background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:.85em">users.role</code> mengontrol akses. Middleware <code style="background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:.85em">CheckRole</code> memblokir route berdasarkan nilai integer 0 / 1 / 2.</p>
-      </div>
-      <div class="roles-grid" id="roles-container"></div>
-    </div>
-  </section>
-
-  <!-- TECH (rendered by app.js) -->
-  <section class="tech">
-    <div style="max-width:900px;margin:0 auto;text-align:center">
-      <span class="section-tag"><i class="fa-solid fa-code"></i> Tech Stack</span>
-      <h2 class="section-title">Teknologi yang Digunakan</h2>
-      <p class="section-sub" style="margin-left:auto;margin-right:auto">Stack lengkap yang diimplementasikan — dari backend framework hingga testing.</p>
-      <div class="tech-grid" id="tech-container"></div>
-    </div>
-  </section>
-
-  <!-- TEAM (rendered by app.js) -->
-  <section class="team" id="tim">
-    <div style="max-width:1000px;margin:0 auto">
-      <div class="center">
-        <span class="section-tag"><i class="fa-solid fa-people-group"></i> Tim Kami</span>
-        <h2 class="section-title">5 Pengembang</h2>
-        <p class="section-sub">Tim mahasiswa di balik platform IReport.</p>
-      </div>
-      <div class="team-grid" id="team-container"></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2>Ingin Tahu Lebih Dalam?</h2>
-    <p>Baca dokumentasi teknis lengkap — arsitektur, skema database, 30+ routes, dan analisis keamanan sistem.</p>
-    <div class="cta-btns">
-      <a href="docs.html" class="btn-white">
-        <i class="fa-solid fa-book"></i> Baca Dokumentasi Teknis
-      </a>
-      <a href="https://github.com/alaric2001" target="_blank" class="btn-ghost">
-        <i class="fa-brands fa-github"></i> GitHub Repository
-      </a>
-    </div>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-brand">IReport<span>.</span></div>
-    <p>Fullstack Laravel 10 Portfolio &middot; Tim 5 Mahasiswa</p>
-    <ul class="footer-links">
-      <li><a href="#arsitektur">Arsitektur</a></li>
-      <li><a href="#fitur">Fitur</a></li>
-      <li><a href="#akses">RBAC</a></li>
-      <li><a href="#tim">Tim</a></li>
-      <li><a href="docs.html">Docs</a></li>
-      <li><a href="https://github.com/alaric2001" target="_blank">GitHub</a></li>
-    </ul>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <i class="fa-solid fa-triangle-exclamation"></i> IReport
+      </div>
+      <p class="footer-text">Fullstack Laravel 10 Portfolio &middot; Tim 5 Mahasiswa</p>
+      <div class="footer-links">
+        <a href="docs.html">Dokumentasi Teknis</a>
+        <a href="https://github.com/alaric2001" target="_blank">GitHub</a>
+      </div>
+    </div>
   </footer>
 
   <script src="assets/js/app.js"></script>

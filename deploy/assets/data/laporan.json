@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "kategori": "Jalan Raya",
+    "provinsi": "JAWA TIMUR",
+    "alamat": "Jl. Mojokerto Selatan No. 14",
+    "keterangan": "Jalan berlubang sedalam ±30cm, sangat berbahaya untuk pengendara motor terutama saat malam hari.",
+    "tanggal": "19 Mar 2022",
+    "vote": 5,
+    "status": "Diproses"
+  },
+  {
+    "id": 2,
+    "kategori": "Penerangan Jalan",
+    "provinsi": "JAWA TIMUR",
+    "alamat": "Jl. Pahlawan, Pusat Kota",
+    "keterangan": "Lampu jalan mati sejak 2 minggu lalu. Kawasan menjadi gelap dan rawan kecelakaan.",
+    "tanggal": "5 Apr 2022",
+    "vote": 3,
+    "status": "Baru"
+  },
+  {
+    "id": 3,
+    "kategori": "Trotoar",
+    "provinsi": "JAWA BARAT",
+    "alamat": "Jl. Pajajaran, Bogor Kota",
+    "keterangan": "Trotoar rusak parah, ubin terangkat dan berlubang. Pejalan kaki terpaksa jalan di badan jalan.",
+    "tanggal": "2 Mei 2022",
+    "vote": 8,
+    "status": "Selesai"
+  },
+  {
+    "id": 4,
+    "kategori": "Gorong-gorong",
+    "provinsi": "DKI JAKARTA",
+    "alamat": "Jl. Kebon Jeruk Raya",
+    "keterangan": "Gorong-gorong tersumbat menyebabkan banjir saat hujan deras. Air menggenang ±30 menit.",
+    "tanggal": "10 Apr 2022",
+    "vote": 6,
+    "status": "Diproses"
+  },
+  {
+    "id": 5,
+    "kategori": "Jalan Raya",
+    "provinsi": "JAWA TENGAH",
+    "alamat": "Jl. Solo–Semarang KM 42",
+    "keterangan": "Aspal terkelupas di jalur cepat sepanjang ±50 meter. Permukaan sangat tidak rata.",
+    "tanggal": "15 Mar 2022",
+    "vote": 4,
+    "status": "Baru"
+  },
+  {
+    "id": 6,
+    "kategori": "Trotoar",
+    "provinsi": "DI YOGYAKARTA",
+    "alamat": "Jl. Malioboro, Gamping",
+    "keterangan": "Batu paving trotoar banyak yang lepas dan berserakan. Berbahaya bagi lansia dan difabel.",
+    "tanggal": "20 Apr 2022",
+    "vote": 7,
+    "status": "Selesai"
+  },
+  {
+    "id": 7,
+    "kategori": "Penerangan Jalan",
+    "provinsi": "BANTEN",
+    "alamat": "Jl. Raya Serpong, BSD City",
+    "keterangan": "Tiga tiang lampu mati sekaligus. Area perumahan jadi gelap total sejak seminggu lalu.",
+    "tanggal": "8 Mei 2022",
+    "vote": 2,
+    "status": "Baru"
+  },
+  {
+    "id": 8,
+    "kategori": "Gorong-gorong",
+    "provinsi": "SUMATERA UTARA",
+    "alamat": "Jl. Gatot Subroto, Medan",
+    "keterangan": "Tutup gorong-gorong hilang/rusak sehingga membahayakan pengguna jalan. Sudah ada 1 motor terperosok.",
+    "tanggal": "1 Jun 2022",
+    "vote": 9,
+    "status": "Diproses"
+  }
+]

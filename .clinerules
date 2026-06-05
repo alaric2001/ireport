@@ -1,0 +1,22 @@
+# Token and Quota Optimization Rules
+
+To save AI tokens and quota, adhere strictly to these guidelines:
+
+## 1. Communication & Output
+- **Absolute Conciseness**: Be extremely brief. Avoid greetings, pleasantries, and sign-offs.
+- **No Code Repetition**: Do not reprint unmodified code blocks in your chat responses.
+- **Short Summaries**: Keep summaries of actions taken to 1-2 lines. Do not re-summarize content that is already written in artifacts.
+- **Direct Answers**: Answer questions directly without lengthy introductory explanations.
+
+## 2. File and Directory Operations
+- **Targeted Views**: When reading files, do not read the entire file if only a specific section is relevant. View only the lines of interest.
+- **Precise Edits**: Modify only the exact lines that need changing. Never rewrite or replace large chunks or entire files.
+- **Efficient Searching**: Use specific search queries rather than searching broadly or reading multiple files to find references.
+
+## 3. Command Execution
+- **Control Output Size**: When running terminal commands that might output large amounts of text, always limit the output using options like `-n <limit>` or `head`.
+- **No Polling**: Do not poll or loop on commands.
+
+## 4. Planning and Artifacts
+- **Minimal Artifacts**: Keep implementation plans, tasks, and walkthroughs highly compact. Use short bullet points.
+- **Skip Planning for Minor Changes**: For trivial changes (bug fixes, formatting, minor config edits), do not create a full implementation plan. Perform the change directly and explain it briefly.

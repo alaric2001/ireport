@@ -1,118 +1,118 @@
 @extends('layouts.master')
 @section('konten')
 
-<center>
-    <div class="card" style="width: 50%; text-align:left; margin-bottom: 40px">
-        <img class="card-img-top" style="height: 360px" src="{{ asset('image/'.$detail->foto)}}" alt="..." />
-        <div class="card-body">
-                <h4 class="fw-bolder">{{ $detail->kategori }}</h4>
-                <i class="fa fa-map-marker"></i> {{ $detail->alamat }} <br>
-                <i class="fa fa-book"></i> {{$detail->keterangan}} <br>
-                <i class="fa fa-clock"></i> {{ $detail->tanggal }} <br>
-                <a class="btn btn-primary btn-sm" href="/laporanupvote/{{$detail->id}}"> <i class="fa fa-toggle-up"></i> </a>
-                <a class="btn btn-secondary btn-sm" href="/laporandownvote/{{$detail->id}}"> <i class="fa fa-toggle-down"></i> </a> {{$detail->vote}}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-md-10">
 
-                <div style="padding-bottom: 20px">
-                    <form action="/laporan/{{$detail->id}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <br>
-                        <a href="/laporan/{{ $detail->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <input type="submit" class="btn btn-danger btn-sm" value="Delete"></input>
-                    </form>
-                </div>
+    {{-- Kartu Detail Laporan --}}
+    <div class="detail-card">
+      <img class="detail-img" src="{{ asset('image/'.$detail->foto) }}" alt="{{ $detail->kategori }}">
 
-                <div class="card">
-                    <div class="card-header" style="background-color: rgb(238, 237, 237)">
-                      Komentar
-                    </div>
-                    <div class="card-body">
-                      {{-- <blockquote class="blockquote mb-0"> --}}
-                        <div>
-                            <form action="/laporan/{{ $detail->id }}" method="POST" style="" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group" style="padding-bottom: 0px">
-                                    {{-- <label>Detail Lokasi</label> --}}
-                                    <textarea name="isi" cols="20" rows="4" class="form-control" placeholder="Masukkan komentar anda" style="padding-bottom: 0px"></textarea>
-                                </div>
-                                @error('isi')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-    
-                                <div class="form-group" style="padding-top:">
-                                    {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-                                    <input type="submit" class="btn btn-secondary btn-sm" value="Submit"></input>
-                                </div>
-                            </form>
-                        </div>
-                        <hr>
-                        <div>
-{{-- Komentar --}}
-                            @foreach ($komen as $datakomen)
-                            <table>
-                                {{-- class="tabel table-bordered" --}}
-                                    <tr style="">
-                                        <td style="padding-right: 10px; vertical-align: top" rowspan="3">
-                                                <img class="img-circle elevation-2" src="{{ asset('image/'.$datakomen->foto) }}"
-                                                    alt="Profile Picture" style="width: 40px; height: 40px; object-fit:cover">
-                                        </td>
-                                        <td>
-                                            <div style="font-family: 'poppins'; font-style: ; font-weight: bold; font-size: 14px; 
-                                            line-height:; color:">
-                                                {{ $datakomen->nama }}
-                                            </div>
-                                        </td>
-                                        <td style="vertical-align: top; padding-left: 10px" rowspan="3">
-                                            <div style="text-align:center">
-                                                {{-- edit --}}
-                                                {{-- <form action="/laporan/{{ $datakomen->id }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <input type="submit" class="" value="Delete" style="background-color:white; border: none; 
-                                                    font-family: 'poppins'; font-style: ; font-weight: bold; font-size: 10px; color:rgb(157, 157, 157)"></input>
-                                                </form> --}}
-                                                {{-- <a href="/editkomen/{{ $datakomen->id }}" class="" style="margin-bottom: 4px; font-family: 'poppins';
-                                                    font-style: ; font-weight: bold; font-size: 10px; color:rgb(157, 157, 157)">Edit</a> --}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 460px">
-                                            <div  style="font-family: 'poppins'; font-style: ; font-weight: ; font-size: 11px; 
-                                            line-height:; color:">
-                                                {{ $datakomen->created_at }}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-bottom: 40px">
-                                            <div style="font-family: 'poppins'; font-style: ; font-weight: ; font-size: 14px; 
-                                                line-height:; color:">
-                                                {{ $datakomen->isi }}
-                                                <form action="/laporan/{{ $datakomen->id }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <input type="submit" class="" value="Delete" style="background-color:white; border: none; padding-left: 390px;
-                                                    font-family: 'poppins'; font-style: ; font-weight: bold; font-size: 10px; color:rgb(118, 118, 118)"></input>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {{-- </div> --}}
-                                
-                            </table>
-                            @endforeach
-                        </div>
-                        
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer> --}}
-                      {{-- </blockquote> --}}
-                    </div>
-                  </div>
-
+      <div class="detail-body">
+        <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-3">
+          <h4 class="detail-title mb-0">{{ $detail->kategori }}</h4>
+          @php
+            $status = strtolower($detail->status ?? 'baru');
+            $badgeClass = match(true) {
+              str_contains($status, 'selesai') => 'badge-selesai',
+              str_contains($status, 'proses')  => 'badge-proses',
+              str_contains($status, 'tolak')   => 'badge-ditolak',
+              default => 'badge-baru',
+            };
+          @endphp
+          <span class="badge-status {{ $badgeClass }}">{{ $detail->status ?? 'Baru' }}</span>
         </div>
-        {{-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        </div> --}}
+
+        <div class="detail-meta"><i class="fas fa-map-marker-alt"></i> {{ $detail->alamat }}</div>
+        <div class="detail-meta"><i class="fas fa-map"></i> {{ $detail->provinsi }}</div>
+        <div class="detail-meta"><i class="far fa-calendar-alt"></i> {{ $detail->tanggal }}</div>
+
+        <p class="detail-desc">{{ $detail->keterangan }}</p>
+
+        {{-- Vote + Aksi --}}
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-3">
+          <div class="vote-chip">
+            <a href="/laporanupvote/{{ $detail->id }}" title="Upvote">
+              <i class="fas fa-caret-up"></i>
+            </a>
+            <span class="vote-num">{{ $detail->vote }}</span>
+            <a href="/laporandownvote/{{ $detail->id }}" title="Downvote">
+              <i class="fas fa-caret-down"></i>
+            </a>
+          </div>
+
+          @auth
+          <div class="d-flex gap-2">
+            <a href="/laporan/{{ $detail->id }}/edit" class="btn btn-warning btn-sm"
+              style="border-radius:7px;font-size:.78rem">
+              <i class="fas fa-edit me-1"></i> Edit
+            </a>
+            <form action="/laporan/{{ $detail->id }}" method="POST" class="d-inline"
+              onsubmit="return confirm('Yakin hapus laporan ini?')">
+              @csrf
+              @method('delete')
+              <button type="submit" class="btn btn-danger btn-sm"
+                style="border-radius:7px;font-size:.78rem">
+                <i class="fas fa-trash me-1"></i> Hapus
+              </button>
+            </form>
+          </div>
+          @endauth
+        </div>
+      </div>
     </div>
-</center>
+
+    {{-- Komentar --}}
+    <div class="komentar-box">
+      <h6><i class="fas fa-comments me-2" style="color:var(--ir-blue)"></i>Komentar</h6>
+
+      {{-- Form komentar --}}
+      <div class="komentar-form">
+        <form action="/laporan/{{ $detail->id }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <textarea name="isi" rows="3" class="form-control mb-2"
+            placeholder="Tulis komentar..."></textarea>
+          @error('isi')
+            <div class="alert alert-danger py-1 mb-2" style="font-size:.8rem">{{ $message }}</div>
+          @enderror
+          <button type="submit" class="btn btn-secondary btn-sm"
+            style="border-radius:7px;font-size:.78rem">
+            <i class="fas fa-paper-plane me-1"></i> Kirim
+          </button>
+        </form>
+      </div>
+
+      {{-- Daftar komentar --}}
+      <div class="komentar-list">
+        @forelse ($komen as $k)
+          <div class="komentar-item">
+            <img class="komentar-avatar"
+              src="{{ asset('image/'.$k->foto) }}" alt="{{ $k->nama }}">
+            <div class="flex-grow-1">
+              <div class="komentar-nama">{{ $k->nama }}</div>
+              <div class="komentar-time">{{ $k->created_at }}</div>
+              <div class="komentar-isi">{{ $k->isi }}</div>
+            </div>
+            @auth
+            <form action="/laporan/{{ $k->id }}" method="POST" class="ms-2 align-self-start"
+              onsubmit="return confirm('Hapus komentar?')">
+              @csrf
+              @method('delete')
+              <button type="submit" class="btn-komentar-delete" title="Hapus">
+                <i class="fas fa-times"></i>
+              </button>
+            </form>
+            @endauth
+          </div>
+        @empty
+          <p style="font-size:.8rem;color:#9ca3af;text-align:center;padding:.75rem 0">
+            Belum ada komentar. Jadilah yang pertama!
+          </p>
+        @endforelse
+      </div>
+    </div>
+
+  </div>
+</div>
+
 @endsection

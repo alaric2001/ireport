@@ -175,27 +175,9 @@
 <script src="{{ asset('template2/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('template2/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- Sparkline -->
-<script src="{{ ('template2/lugins/sparklines/sparkline.js') }}"></script>
-<!-- JQVMap -->
-<script src="{{ ('template2/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ ('template2/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{ ('template2/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-<!-- daterangepicker -->
-<script src="{{ ('template2/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ ('template2/plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ ('template2/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ ('template2/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
-<script src="{{ ('template2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<script src="{{ asset('template2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ ('template2/dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ ('template2/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ ('template2/dist/js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('template2/dist/js/adminlte.js') }}"></script>
 </body>
 </html>
